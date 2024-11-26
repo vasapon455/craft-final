@@ -1,11 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, \
     CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post,Comment
 from django.urls import reverse_lazy
-from .models import PostForm  # Import your custom PostForm
+from .models import PostForm,CommentForm  # Import your custom PostForm
 
-# Create your views here.
 class BlogListView(ListView):
     model = Post
     template_name = 'home.html'
@@ -31,9 +30,25 @@ class BlogDeleteView(DeleteView):
     model = Post
     template_name = "post_delete.html"
     success_url = reverse_lazy('home')
+    
+class CommentCreateView(CreateView):
+    model = Comment
+    template_name = 'comment_new.html'
+    form_class = CommentForm
+    
+class CommentDeleteView(DeleteView):
+    model = Comment
+    template_name = "comment_delete.html"
+    success_url = reverse_lazy('home')
+
+class CommentUpdateView(UpdateView):
+    model = Comment
+    template_name = 'comment_edit.html'
+    fields = ['comment_text','user_rating']
+    
 
 from django.shortcuts import render, redirect
-from .models import PostForm  # Importing the PostForm from models.py
+from .models import PostForm,CommentForm  # Importing the PostForm from models.py
 
 # View function to create a new post
 def blogCreateView(request):
@@ -48,3 +63,11 @@ def blogCreateView(request):
     
     # Render the template with the form (either blank or filled with POST data)
     return render(request, 'post_new.html', {'form': form})
+
+def commentCreateView(request):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():  
+            form.save() 
+    else:
+        form = CommentForm() 

@@ -16,7 +16,21 @@ class Post(models.Model):
     
     def get_absolute_url(self): #new
         return reverse("post_detail", kwargs={"pk": self.pk}) # new
+
+class Comment(models.Model):
+    comment_text = models.CharField(max_length=100)
+    user_rating = models.IntegerField()
+    commented_post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_comments')
+    is_approved = models.BooleanField()
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.comment_text
     
+    def get_absolute_url(self): #new
+        return reverse("post_detail", kwargs={"pk": self.pk}) # new
+    
+
 # ModelForm 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -40,4 +54,17 @@ class PostForm(forms.ModelForm):
                 'rows': 5,  # Set height of the textarea
                 'placeholder': 'Write the content of your post here'  # Placeholder for body
             }),
+        }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment_text', 'user_rating','commented_post','is_approved']
+        labels = {'comment_text':'Comment Text','user_rating':'Rating','commented_post':'Commented Post','is_approved':"Approve"}
+        widgets = {
+            'commented_text': forms.Textarea(attrs={
+                'class': 'form-control',  
+                'rows': 5,  
+                'placeholder': 'Write your comment here'  
+            }),'rating': forms.IntegerField(max_value=5,min_value=0)
         }
