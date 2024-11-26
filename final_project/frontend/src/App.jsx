@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Shopping from "./pages/Shopping";
@@ -10,9 +10,9 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-const App = () => {
+const App = () =>  {
   return (
-  <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 };
 
 export default App;

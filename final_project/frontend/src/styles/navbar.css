@@ -1,9 +1,42 @@
 .navbar-container {
     border-radius: 0px;
+    width: 100vw;
     height: 120px;
     padding: 0px;
     margin: 0px;
     top: 0px;
     background-color: #333232;
-    position: absolute;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-logo{
+    margin-left: 70px;
+}
+
+.hamburger{
+    display: none;
+}
+
+@media screen and (max-width:740px) {
+    .navbar-menu{
+        display: none;
+    }  
+    .hamburger{
+       display: block;
+    } 
 }
