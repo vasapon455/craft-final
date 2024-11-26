@@ -3,7 +3,6 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap";
 import {Row, Col} from "react-bootstrap";
 
-
 const NavBar = () => {
   return (
     <Navbar className="navbar-container" expand="lg">

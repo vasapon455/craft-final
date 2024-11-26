@@ -1,4 +1,5 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
@@ -8,23 +9,24 @@ import ContactUs from "./pages/ContactUs";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-const App = ()=> {
+const App = () =>  {
   return (
-  <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }} >
+    <BrowserRouter
+      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+    >
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/blog" element={<Blog/>} />
-        <Route path="/shopping" element={<Shopping/>} />
-        <Route path="/order-tracking" element={<OrderTracking/>} />
-        <Route path="/contact-us" element={<ContactUs/>} />
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/register" element={<Register/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/shopping" element={<Shopping />} />
+        <Route path="/order-tracking" element={<OrderTracking />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
