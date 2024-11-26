@@ -10,7 +10,7 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-const App = () =>  {
+const App = () => {
   return (
     <BrowserRouter
       future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
@@ -26,7 +26,7 @@ const App = () =>  {
         <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 };
 
 export default App;
