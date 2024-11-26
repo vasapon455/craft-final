@@ -8,6 +8,7 @@ import ContactUs from "./pages/ContactUs";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = ()=> {
   return (

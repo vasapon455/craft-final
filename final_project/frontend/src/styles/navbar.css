@@ -1,4 +1,9 @@
 .navbar-container {
-    width: 100%;
+    border-radius: 0px;
+    height: 120px;
+    padding: 0px;
+    margin: 0px;
+    top: 0px;
     background-color: #333232;
+    position: absolute;
 }
