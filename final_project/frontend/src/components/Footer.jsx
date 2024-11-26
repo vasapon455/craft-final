@@ -26,7 +26,7 @@ const Footer = () => {
                 </Col>
             </Row>
             <Row>
-                <p>Copyright © 2024 Japan Style Alrights Reserved.</p>
+                <p className="footer-copyright">Copyright © 2024 Japan Style Alrights Reserved.</p>
             </Row>
             </Container>
         </footer>

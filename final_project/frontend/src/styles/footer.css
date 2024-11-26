@@ -69,4 +69,13 @@
     .footer-right{
         display: none;
     }
+
+    .footer-left{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-container{
+        text-align: center;
+    }
 }
