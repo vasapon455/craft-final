@@ -31,7 +31,6 @@ const shopItem = [
   { id: 6, image: "src", name: "name", price: "price" },
   { id: 8, image: "src", name: "name", price: "price" },
   { id: 9, image: "src", name: "name", price: "price" },
-  { id: 10, image: "src", name: "name", price: "price" },
 ];
 
 const Shopping = () => {
