@@ -1,0 +1,31 @@
+.new-arrival {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: auto;
+    gap: 30px;
+}
+
+.about-us-image{
+    width: 30vw;
+    object-fit: scale-down;
+}
+
+
+.image-card{
+    width: 330px;
+    height: 440px;
+    background-color: black;
+}
+
+@media screen and (max-width: 770px){
+    .image-card{
+        width: 165px;
+        height: 220px;
+        background-color: black;
+    }
+    
+
+}
