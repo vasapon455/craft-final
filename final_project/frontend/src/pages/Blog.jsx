@@ -38,7 +38,7 @@ const Blog = () => {
   return (
     <Layout>
       <Section header="Blog">
-        <section className="blog">
+        <section id="blog">
           <Link
             to="/"
             style={{

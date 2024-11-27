@@ -1,0 +1,71 @@
+#shopping {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-button {
+  width: 80px;
+  background-color: transparent;
+  color: #333232;
+  border: 1px solid #333232;
+  font-family: Kanit;
+  font-weight: 200px;
+  font-size: 12px;
+}
+
+.filter-button:hover {
+  background-color: #ff0e0e;
+  font-family: Kanit;
+  font-weight: 400px;
+}
+
+.filter-button:focus {
+  background-color: #ff0e0e;
+  font-family: Kanit;
+  font-weight: 400px;
+  border: 1px solid #333232;
+}
+
+.filter-button:active {
+  border: 1px solid #333232;
+}
+
+.filter-button:visited {
+  background-color: #ff0e0e;
+  font-family: Kanit;
+  font-weight: 400px;
+  border: 1px solid #333232;
+}
+
+.shopping-card-container {
+  display: grid;
+  column-gap: 20px;
+  row-gap: 20px;
+  grid-template-columns: 3;
+}
+
+.shopping-card {
+  width: auto;
+  color: #333232;
+  border: 1px solid black;
+}
+
+.shopping-name {
+  font-size: 36px;
+}
+
+.shopping-price {
+  font-size: 24px;
+  color: #333232;
+}
