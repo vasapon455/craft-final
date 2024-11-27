@@ -17,7 +17,7 @@ const NavBar = () => {
       <Container>
         <Row className="navbar-inner">
           <Col md={4} className="navbar-login">
-            <img src="./user.svg" className="navbar-login"/>
+            <Link to='/login'><img src="./user.svg" className="navbar-login"/></Link>
           </Col>
           <Col md={4} lg={3} >
             <img className="navbar-logo" src="./logo.svg" />

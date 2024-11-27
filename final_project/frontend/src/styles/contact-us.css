@@ -1,0 +1,17 @@
+.contact-header{
+    font-family: Kanit;
+    text-decoration: underline;
+    font-size: 24px;
+}
+
+.contact-info{
+    font-size: 36px;
+    color: #333232;
+}
+
+.contact-inner{
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    margin-top: 100px;
+}

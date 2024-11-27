@@ -26,6 +26,7 @@ const Footer = () => {
                 </Col>
             </Row>
             <Row>
+                <a className="footer-to-top" href="#top">Return to Top</a>
                 <p className="footer-copyright">Copyright © 2024 Japan Style Alrights Reserved.</p>
             </Row>
             </Container>

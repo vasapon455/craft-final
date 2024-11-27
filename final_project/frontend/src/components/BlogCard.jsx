@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const BlogCard = ({ header, createdDate, summary }) => {
   return (
- <Link to='/detail'>
+ <Link to='/detail' className="view-blog">
       <Container className="blog-card">
         <Row className="blog-inner">
           <Col lg={4}>
