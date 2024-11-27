@@ -1,9 +1,10 @@
-import "../styles/blog-card.css";
+import "../styles/blog.css";
 import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const BlogCard = ({ header, createdDate, summary }) => {
   return (
- 
+ <Link to='/detail'>
       <Container className="blog-card">
         <Row className="blog-inner">
           <Col lg={4}>
@@ -18,7 +19,7 @@ const BlogCard = ({ header, createdDate, summary }) => {
           </Col>
         </Row>
       </Container>
-  
+      </Link>
   );
 };
 

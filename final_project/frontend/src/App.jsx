@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
+import BlogDetail from "./pages/BlogDetail";
 import Shopping from "./pages/Shopping";
 import OrderTracking from "./pages/OrderTracking";
 import ContactUs from "./pages/ContactUs";
@@ -16,6 +17,7 @@ const App = () =>  {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/detail" element={<BlogDetail />} />
         <Route path="/shopping" element={<Shopping />} />
         <Route path="/order-tracking" element={<OrderTracking />} />
         <Route path="/contact-us" element={<ContactUs />} />
