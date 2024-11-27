@@ -71,11 +71,13 @@
     }
 
     .footer-left{
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+        padding: 30px;;
     }
     .footer-container{
         text-align: center;
+    }
+    .footer-inner1{
+        display: flex;
+        gap: 0px;
     }
 }

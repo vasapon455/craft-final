@@ -1,0 +1,15 @@
+.new-arrival {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: auto;
+    gap: 30px;
+}
+
+.about-us-image{
+    width: 30vw;
+    object-fit: scale-down;
+}
+

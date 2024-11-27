@@ -1,0 +1,50 @@
+.field{
+    width: 50vw;
+    font-family: Kanit;
+    font-size: 12px;
+    font-weight: 200px;
+}
+
+.form-group{
+    font-family: Kanit;
+    text-align: left;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.button-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.primary-button{
+    font-family: Kanit;
+    font-size: 24px;
+    font-weight: 400px;
+    border-radius: 6px;
+    width: 20vw;
+    height: auto;
+    background-color: FF0E0E;
+    color: #FFFF;
+  }
+
+  .secondary-button {
+    font-family: Kanit;
+    font-size: 24px;
+    font-weight: 400px;
+    color: black;
+    text-decoration: underline;
+  }
+  
+  .form-label{
+    font-size: 24px;
+    font-weight: 400px;
+  }

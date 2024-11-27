@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import { Navbar } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [showHamburger, setShowHamburger] = useState(false);
@@ -15,28 +16,27 @@ const NavBar = () => {
     <Navbar className="navbar-container" expand="xl">
       <Container>
         <Row className="navbar-inner">
-          <Col md={4} >
+          <Col md={4} className="navbar-login">
             <img src="./user.svg" className="navbar-login"/>
           </Col>
-          <Col md={4} lg={6} >
+          <Col md={4} lg={3} >
             <img className="navbar-logo" src="./logo.svg" />
           </Col>
           <Col lg={12} className="navbar-menu">
             <ul>
-             
-              <li>Home</li>
-              <span >|</span>
-              <li> Blog </li>
+              <li><Link to="/" className="menu">Home</Link></li>
               <span>|</span>
-              <li>Shopping</li>
+              <li> <Link to="/blog" className="menu">Blog</Link> </li>
               <span>|</span>
-              <li>Order Tracking</li>
+              <li><Link to="/shopping" className="menu">Shopping</Link></li>
               <span>|</span>
-              <li>Contact Us</li>
+              <li><Link to="/order-tracking" className="menu">Order Tracking</Link></li>
               <span>|</span>
-              <li>Cart</li>
+              <li><Link to="/contact-us" className="menu">Contact Us</Link></li>
               <span>|</span>
-              <li>Login/Register</li>
+              <li><Link to="/cart" className="menu">Cart</Link></li>
+              <span>|</span>
+              <li><Link to="/login" className="menu">Login/Register</Link></li>
             </ul>
           </Col>
           <Col md={4} lg={1} className="hamburger">

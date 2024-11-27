@@ -6,15 +6,16 @@
     margin: 0px;
     top: 0px;
     background-color: #333232;
-    position: sticky;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
 }
 
-li:hover{
+.menu:hover{
     color: #FF0E0E;
+    text-decoration: none;
 }
 
 .navbar-inner{
@@ -65,7 +66,7 @@ li:hover{
     }
     
     .navbar-inner{
-        gap:60px;
+        gap:30px;
     }
 
     .navbar-menu{
@@ -81,6 +82,12 @@ li:hover{
    
     .navbar-login{
         display: block;
+    }
+    
+    .navbar-inner{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
    
