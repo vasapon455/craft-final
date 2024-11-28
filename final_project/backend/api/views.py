@@ -1,4 +1,14 @@
 from django.shortcuts import render,reverse
+from django.contrib.auth.models import User
+from rest_framework import generics
+from .serializers import UserSerializer
+from rest_framework_permissions import IsAuthenticated, AllowAny
+
+class CreateUserView(generics.CreateAPIView):
+    query_set = User.objects.all()
+    serailizer_class =UserSerializer
+    permission_classes = [AllowAny]
+
 
 def listArticle(request):
     return render(request,'home.html')
@@ -30,6 +40,8 @@ def session_add(request,title,url):
         ra={}
     if title not in ra:
         ra[title] = url
+
     request.session['ra'] = ra
     
     return ra
+
