@@ -26,7 +26,7 @@ const NavBar = () => {
             <ul>
               <li><Link to="/" className="menu">Home</Link></li>
               <span>|</span>
-              <li> <Link to="/blog" className="menu">Blog</Link> </li>
+              <li> <Link to="/article" className="menu">Article</Link> </li>
               <span>|</span>
               <li><Link to="/shopping" className="menu">Shopping</Link></li>
               <span>|</span>

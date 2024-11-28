@@ -4,8 +4,27 @@ import Section from "../components/Section";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import CommentCard from "../components/CommentCard";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import api from "../api";
 
-const BlogDetail = () => {
+const ArticleDetail = () => {
+
+  const {article_id} = useParams();;
+  const [articleTitle, setArticleTitle] = useState("");
+  const [recentArticles, setRecentArticles] = useState([]);
+
+  useEffect(()=>{
+    api.get('article/${article_id}/',{withCredentials: true}).then((response)=>{
+      setArticleTitle(response.data.title)
+      setRecentArticles(response.data.recent_articles)
+    }).catch((error)=>{
+      console.error("Error fetching the article:", error);
+      setArticleTitle("Error loaing article")
+      setRecentArticles([])
+    })
+  },[article_id])
+
   const commentData = [
     {
       id: 1,
@@ -39,7 +58,7 @@ const BlogDetail = () => {
 
   return (
     <Layout>
-      <Section header="BlogName">
+      <Section header={articleTitle}>
         <Container
           style={{
             display: "flex",
@@ -105,4 +124,4 @@ const BlogDetail = () => {
   );
 };
 
-export default BlogDetail;
+export default ArticleDetail;

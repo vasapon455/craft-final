@@ -1,10 +1,13 @@
 import React from "react";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
-import BlogCard from "../components/BlogCard";
-import { Link } from "react-router-dom";
+import ArticleCard from "../components/ArticleCard";
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import api from "../api";
 
-const Blog = () => {
+const Article = () => {
+
   const blogData = [
     {
       id:1,
@@ -37,8 +40,8 @@ const Blog = () => {
 
   return (
     <Layout>
-      <Section header="Blog">
-        <section id="blog">
+      <Section header="Article">
+        <section id="article">
           <Link
             to="/"
             style={{
@@ -51,7 +54,8 @@ const Blog = () => {
             +โพสใหม่
           </Link>
           {blogData.map((data) => (
-            <BlogCard
+            <ArticleCard
+              link={data.link}
               id={data.id}
               header={data.header}
               createdDate={data.createdDate}
@@ -64,4 +68,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Article;

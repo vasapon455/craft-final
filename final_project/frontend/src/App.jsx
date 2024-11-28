@@ -2,8 +2,8 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Blog from "./pages/Blog";
-import BlogDetail from "./pages/BlogDetail";
+import Article from "./pages/Article";
+import ArticleDetail from "./pages/ArticleDetail";
 import Shopping from "./pages/Shopping";
 import ItemDetail from "./pages/ItemDetail";
 import Promotion from "./pages/Promotion";
@@ -18,8 +18,8 @@ const App = () =>  {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/detail" element={<BlogDetail />} />
+        <Route path="/article" element={<Article />} />
+        <Route path="/articles/article/:article_id" element={<ArticleDetail/>} />
         <Route path="/shopping" element={<Shopping />} />
         <Route path="/item-detail" element={<ItemDetail />} />
         <Route path="/promotion" element={<Promotion />} />

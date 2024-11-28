@@ -1,19 +1,21 @@
-import "../styles/blog.css";
+import "../styles/article.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const BlogCard = ({ header, createdDate, summary }) => {
+import { useParams } from "react-router-dom";
+
+const ArticleCard = ({ header, createdDate, summary, id }) => {
   return (
  
-      <Container className="blog-card">
-        <Link to='/detail' className="link">
-        <Row className="blog-inner">
+      <Container className="article-card">
+        <Link to={`/articles/article/${id}`} className="link">
+        <Row className="article-inner">
           <Col lg={4}>
-            <div className="blog-card-image">
+            <div className="article-card-image">
               <img /> 
             </div>
           </Col>
-          <Col className="blog-card-right" lg={8}>
+          <Col className="article-card-right" lg={8}>
             <h2 className="heading2 white">{header}</h2>
             <span className="paragraph white">{createdDate}</span>
             <p className="paragraph white">{summary}</p>
@@ -25,4 +27,4 @@ const BlogCard = ({ header, createdDate, summary }) => {
   );
 };
 
-export default BlogCard;
+export default ArticleCard;
