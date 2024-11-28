@@ -10,15 +10,12 @@ const ItemDetail = () => {
       <Section header="Shopping">
         <Link
           to="/promotion"
-          style={{
-            textDecoration: "underline",
-          }}
-          className="paragraph black"
+          className="paragraph black underline"
         >
           ดูโปรโมชัน
         </Link>
       </Section>
-      <img src="./item-detail-example.jpeg" />
+      <img src="shopping/item-detail-example.jpeg" className="item-detail-image" />
       <Container className="item-detail">
         <h2 className="sub-heading black">Hello</h2>
         <p className="paragraph black">200 บาท</p>

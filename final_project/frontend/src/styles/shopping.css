@@ -78,15 +78,17 @@
   color: #333232;
 }
 
-
 .item-detail {
-  width: 60vw;
-  height: 600px;
   margin-bottom: 90px;
   margin-top: 30px;
+  width: 90vw;
   display: flex;
   flex-direction: column;
   gap: 30px;
+}
+
+.item-detail-image{
+  width: 60vw;
 }
 
 @media screen and (max-width: 770px) {
@@ -98,5 +100,4 @@
     height: auto;
     width: 100px;
   }
-  
 }

@@ -13,15 +13,15 @@ const Footer = () => {
                 <p className="sub-heading red">Love Japanese Fashion</p>
                 <span className="paragraph white">Follow Us!</span>
                 <div className="footer-social-media">
-                    <img src="/fb-logo.svg"/>
-                    <img src="/ig-logo.svg"/>
-                    <img src="/tiktok-logo.svg"/>
-                    <img src="/x-logo.svg"/>
+                    <img src="/footer/fb-logo.svg"/>
+                    <img src="/footer/ig-logo.svg"/>
+                    <img src="/footer/tiktok-logo.svg"/>
+                    <img src="/footer/x-logo.svg"/>
                 </div>
                 </Col> 
                 <Col Col lg={6} className="footer-right">
                   <p className="sub-heading white">Vasapon Opaswatanakul</p>
-                  <span className="paragraph white ">Address</span>
+                  <span className="paragraph white underline">Address</span>
                   <div className="paragraph white"><p>455/263 ถนนจรัญสนิทวงศ์ ซอย 35 แขวงบางขุนศรี เขตบางกอกน้อย กรุงเทพฯ 10700</p></div>
                 </Col>
             </Row>

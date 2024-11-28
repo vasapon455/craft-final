@@ -18,11 +18,11 @@ const CartCard = ({image, name, price, quantity }) => {
             <p className="paragraph black">จำนวน</p>
             <div style={{display: 'flex', justifyContent: 'left', alignItems: 'center',gap:'10px'}}>
             <button style={{backgroundColor:"transparent",border:"none"}}>
-            <img src="./minus-button.svg"/> 
+            <img src="/cart/minus-button.svg"/> 
             </button >
             <p className="paragraph black">{quantity}</p>
             <button style={{backgroundColor:"transparent",border:"none"}}>
-             <img src="./plus-button.svg"/>
+             <img src="/cart/plus-button.svg"/>
              </button>
              </div>
             </div>

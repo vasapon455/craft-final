@@ -23,15 +23,15 @@ const category = [
 ];
 
 const shopItem = [
-  { id: 1, image: "./item-example.jpeg", name: "name", price: "xxx บาท" },
-  { id: 2, image: "./item-example.jpeg", name: "name", price: "xxx บาท" },
-  { id: 3, image: "./item-example.jpeg", name: "name", price: "xxx บาท" },
-  { id: 4, image: "./item-example.jpeg", name: "name", price: "xxx บาท" },
-  { id: 5, image: "./item-example.jpeg", name: "name", price: "xxx บาท" },
-  { id: 6, image: "./item-example.jpeg", name: "name", price: "xxx บาท" },
-  { id: 7, image: "./item-example.jpeg", name: "name", price: "xxx บาท" },
-  { id: 8, image: "./item-example.jpeg", name: "name", price: "xxx บาท" },
-  { id: 9, image: "./item-example.jpeg", name: "name", price: "xxx บาท" }
+  { id: 1, image: "/shopping/item-example.jpeg", name: "name", price: "xxx บาท" },
+  { id: 2, image: "/shopping/item-example.jpeg", name: "name", price: "xxx บาท" },
+  { id: 3, image: "/shopping/item-example.jpeg", name: "name", price: "xxx บาท" },
+  { id: 4, image: "/shopping/item-example.jpeg", name: "name", price: "xxx บาท" },
+  { id: 5, image: "/shopping/item-example.jpeg", name: "name", price: "xxx บาท" },
+  { id: 6, image: "/shopping/item-example.jpeg", name: "name", price: "xxx บาท" },
+  { id: 7, image: "/shopping/item-example.jpeg", name: "name", price: "xxx บาท" },
+  { id: 8, image: "/shopping/item-example.jpeg", name: "name", price: "xxx บาท" },
+  { id: 9, image: "/shopping/item-example.jpeg", name: "name", price: "xxx บาท" }
 ];
 
 const Shopping = () => {
