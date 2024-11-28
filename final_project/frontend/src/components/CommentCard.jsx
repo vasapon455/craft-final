@@ -13,32 +13,26 @@ const CommentCard = ({ id, comment, author, commentedDate }) => {
           <Link
             to="/"
             style={{
-              fontFamily: "Kanit",
-              color: "#f0f0f0",
-              textDecoration: "underline",
               margin: '20px'
             }}
+           
           >
-            +แก้ไข
+            <span className="paragraph white underline">+แก้ไข</span>
           </Link>
           <Link
             to="/"
-            style={{
-              fontFamily: "Kanit",
-              color: "#f0f0f0",
-              textDecoration: "underline",
-            }}
+           className="pargraph white underline"
           >
-            +ลบ
+            <span className="paragraph white underline">+ลบ</span>
+            
           </Link>
         </Col>
       </Row>
       <Row className="comment-row">
         <Col
-          className="comment-inner-center"
           style={{ textAlign: "left" }}
         >
-          <p className="paragraph black">{comment}</p>
+          <p className="paragraph white">{comment}</p>
         </Col>
       </Row>
       <Row className="comment-row">

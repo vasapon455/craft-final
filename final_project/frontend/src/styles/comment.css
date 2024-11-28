@@ -1,15 +1,15 @@
 .comment{
     display: flex;
+    width: 90vw;
     flex-direction: column;
     color: #f0f0f0;
     justify-content: center;
     align-items: left;
-    
 }
 
 .comment-card{
     display: flex;
-    width: auto;
+    width: 80vw;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -37,7 +37,7 @@
 }
 
 .comment-inner-left{
-  width: 40vw;
+  width: 20vw;
   text-align: center;
   text-align: left
 }
@@ -49,7 +49,32 @@
   }
 
   .comment-inner-center{
-    width: 82vw;
+    width: auto;
+    height: 20vw;
     text-align: center;
     text-align: right;
   }
+
+  @media screen and (max-width: 740px) {
+    .comment-card {
+      padding: 20px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      
+    }
+    
+    .comment-row{
+      gap: 5px;
+    }
+  
+    .article-inner {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      place-content: center;
+      text-align: center;
+      flex-wrap: wrap;
+    }
+  }
+  
