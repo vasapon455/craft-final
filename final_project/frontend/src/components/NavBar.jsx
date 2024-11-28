@@ -21,12 +21,13 @@ const NavBar = () => {
               <img src="/navbar/user.svg" className="navbar-login" />
             </Link>
           </Col>
-          <Col md={4} lg={3}>
+          <Col md={4} lg={3} style={{zIndex: "4"}} >
             <img
               className="navbar-logo"
               src={
                 clickHamburger ? "navbar/logo-click-ham.svg" : "navbar/logo.svg"
               }
+              
             />
           </Col>
           <Col
@@ -35,7 +36,7 @@ const NavBar = () => {
           >
             <ul className={clickHamburger? "hamburger-menu-inner":"navbar-menu-container"}>
               <li>
-                <Link to="/" className= {clickHamburger? "sub-heading black navbar-menu-text" : "paragraph white navbar-menu-text"}>
+                <Link to="/" className= {clickHamburger? "sub-heading black navbar-menu-text" : "paragraph white navbar-menu-text"}  >
                   Home
                 </Link>
               </li>
@@ -76,7 +77,7 @@ const NavBar = () => {
               </li>
             </ul>
           </Col>
-          <Col md={4} lg={1} className="hamburger" onClick={setClickHamburger}>
+          <Col md={4} lg={1} className="hamburger" onClick={setClickHamburger} style={{zIndex: "4"}}>
             <div className="hamburger-container">
               <div className="hamburger-part"></div>
               <div className="hamburger-part"></div>
