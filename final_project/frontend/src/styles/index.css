@@ -113,6 +113,11 @@ span {
     font-size: 20px;
   }
   
+  .heading2{
+    font-size: 40px;
+    width: 80vw;
+  }
+
   .sub-heading{
    
     font-size: 30px;
@@ -122,8 +127,6 @@ span {
   .paragraph {
     font-size: 15px;
   }
-
-  .primary-butto 
 
   .text-container {
     margin-top: 20px;

@@ -8,21 +8,21 @@ import { Container } from "react-bootstrap";
 import CommentCard from "../components/CommentCard";
 
 const ArticleDetail = () => {
-  const { article_id } = useParams();
-  const [articleTitle, setArticleTitle] = useState("");
-  const [recentArticles, setRecentArticles] = useState([]);
-
+  const article_id = useParams()
+  const [articleData, setArticleData] = useState([]);
+  
   useEffect(() => {
     api
-      .get(`article/${article_id}/`, { withCredentials: true })
-      .then((response) => {
-        setArticleTitle(response.data.title);
-      })
+      .get("/api/article/", { withCredentials: true })
+      .then((res) => setArticleData(res.data))
       .catch((error) => {
-        console.error("Error fetching the article:", error);
-        setArticleTitle("Error loading article");
+        console.error("Error Fetching the article.", error);
       });
-  }, [article_id]);
+  }, [articleData]);
+
+
+  let data = articleData.filter((data) => (data.id = article_id));
+  console.log(data)
 
   const commentData = [
     {
@@ -57,7 +57,7 @@ const ArticleDetail = () => {
 
   return (
     <Layout>
-      <Section header={articleTitle}>
+      <Section header={`${data[0].title}`}>
         <Container
           style={{
             display: "flex",
@@ -88,22 +88,7 @@ const ArticleDetail = () => {
         </Container>
         <img src="./article1.jpeg" />
         <div className="text-container">
-          <p className="paragraph black">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            sed libero consectetur, consequat ligula a, iaculis enim. Etiam
-            dictum neque non tristique auctor. Pellentesque aliquam mauris at
-            nulla malesuada consequat. Aliquam vitae lectus in diam fermentum
-            dignissim at id risus. Suspendisse commodo vitae nibh vel laoreet.
-            Morbi odio mi, volutpat et augue ac, consequat ornare ante. Nulla
-            ipsum leo, rhoncus eu nibh sed, ullamcorper tempus lacus. Sed augue
-            diam, congue sit amet eros sodales, tempor sodales arcu. Aenean
-            gravida sapien nibh, at dignissim neque pellentesque eget. Integer
-            mollis at libero at sagittis. Donec elit diam, blandit quis magna
-            consectetur, ultrices pulvinar justo. Fusce nisi massa, faucibus nec
-            consequat et, lobortis dictum augue. Duis dolor leo, mattis sit amet
-            magna in, dictum tristique eros. Morbi et tincidunt augue. In
-            aliquet turpis ligula, sed cursus purus molestie id.
-          </p>
+          <p className="paragraph black">{data[0].content}</p>
         </div>
       </Section>
       <section className="comment">
