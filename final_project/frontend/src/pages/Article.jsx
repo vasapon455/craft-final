@@ -2,9 +2,8 @@ import React from "react";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
 import ArticleCard from "../components/ArticleCard";
-import { Link, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import api from "../api";
+import { Link} from "react-router-dom";
+
 
 const Article = () => {
 

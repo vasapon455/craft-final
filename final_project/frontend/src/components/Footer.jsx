@@ -13,10 +13,10 @@ const Footer = () => {
                 <p className="sub-heading red">Love Japanese Fashion</p>
                 <span className="paragraph white">Follow Us!</span>
                 <div className="footer-social-media">
-                    <img src="./fb-logo.svg"/>
-                    <img src="./ig-logo.svg"/>
-                    <img src="./tiktok-logo.svg"/>
-                    <img src="./x-logo.svg"/>
+                    <img src="/fb-logo.svg"/>
+                    <img src="/ig-logo.svg"/>
+                    <img src="/tiktok-logo.svg"/>
+                    <img src="/x-logo.svg"/>
                 </div>
                 </Col> 
                 <Col Col lg={6} className="footer-right">
@@ -26,7 +26,7 @@ const Footer = () => {
                 </Col>
             </Row>
             <Row style={{textAlign: 'center', display:'flex', flexDirection:'column', gap:'20px'}}>
-                <a className="paragraph white underline " href="#top">Return to Top</a>
+                <a className="paragraph white underline" href="#top">Return to Top</a>
                 <p className="paragraph white">Copyright © 2024 Japan Style Alrights Reserved.</p>
             </Row>
             </Container>

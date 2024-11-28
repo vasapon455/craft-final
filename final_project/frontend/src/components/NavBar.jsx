@@ -17,10 +17,10 @@ const NavBar = () => {
       <Container>
         <Row className="navbar-inner">
           <Col md={4} className="navbar-login">
-            <Link to='/login'><img src="./user.svg" className="navbar-login"/></Link>
+            <Link to='/login'><img src="/user.svg" className="navbar-login"/></Link>
           </Col>
           <Col md={4} lg={3} >
-            <img className="navbar-logo" src="./logo.svg" />
+            <img className="navbar-logo" src="/logo.svg" />
           </Col>
           <Col lg={12} className="navbar-menu">
             <ul>
