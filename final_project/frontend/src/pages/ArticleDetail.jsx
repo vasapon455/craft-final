@@ -1,29 +1,28 @@
 import React from "react";
-import Layout from "../components/Layout";
-import Section from "../components/Section";
-import { Link } from "react-router-dom";
-import { Container } from "react-bootstrap";
-import CommentCard from "../components/CommentCard";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import api from "../api";
+import Layout from "../components/Layout";
+import Section from "../components/Section";
+import { Container } from "react-bootstrap";
+import CommentCard from "../components/CommentCard";
 
 const ArticleDetail = () => {
-
-  const {article_id} = useParams();;
+  const { article_id } = useParams();
   const [articleTitle, setArticleTitle] = useState("");
   const [recentArticles, setRecentArticles] = useState([]);
 
-  useEffect(()=>{
-    api.get('article/${article_id}/',{withCredentials: true}).then((response)=>{
-      setArticleTitle(response.data.title)
-      setRecentArticles(response.data.recent_articles)
-    }).catch((error)=>{
-      console.error("Error fetching the article:", error);
-      setArticleTitle("Error loaing article")
-      setRecentArticles([])
-    })
-  },[article_id])
+  useEffect(() => {
+    api
+      .get(`article/${article_id}/`, { withCredentials: true })
+      .then((response) => {
+        setArticleTitle(response.data.title);
+      })
+      .catch((error) => {
+        console.error("Error fetching the article:", error);
+        setArticleTitle("Error loading article");
+      });
+  }, [article_id]);
 
   const commentData = [
     {
@@ -73,18 +72,16 @@ const ArticleDetail = () => {
             style={{
               textDecoration: "underline",
             }}
-          className="paragraph black"
+            className="paragraph black"
           >
             +แก้ไข
           </Link>
           <Link
             to="/"
             style={{
-            
               textDecoration: "underline",
-              
             }}
-             className="paragraph black"
+            className="paragraph black"
           >
             +ลบ
           </Link>

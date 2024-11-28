@@ -8,7 +8,7 @@ const ArticleCard = ({ header, createdDate, summary, id }) => {
   return (
  
       <Container className="article-card">
-        <Link to={`/articles/article/${id}`} className="link">
+        <Link to={`/article/${id}`} className="link">
         <Row className="article-inner">
           <Col lg={4}>
             <div className="article-card-image">
