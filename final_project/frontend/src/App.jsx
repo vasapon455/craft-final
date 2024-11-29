@@ -13,7 +13,7 @@ import ContactUs from "./pages/ContactUs";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ProductProvider from "./contexts/ProductProvider";
+
 import ArticleProvider from "./contexts/ArticleProvider";
 
 const App = () => {

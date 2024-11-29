@@ -26,7 +26,6 @@ class CommentSerializer(serializers.ModelSerializer):
         fields=["id","comment_text","commented_post","is_approved","date_created","author"]
         extra_kwrags = {"author":{"read_only": True}}
 
-
 class ShopItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShopItem
@@ -39,7 +38,7 @@ class CartItemSerializer(serializers.ModelSerializer):
         extra_kwrags = {"customer":{"read_only": True}}
 
 class SalesOrderSerializer(serializers.ModelSerializer):
-    class Meta:
+    class Meta: 
         model = SalesOrder
         fields = ["id", "image","item_name","price","quantity","customer"]
         extra_kwrags = {"customer":{"read_only": True}}

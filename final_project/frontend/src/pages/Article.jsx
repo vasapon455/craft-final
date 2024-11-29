@@ -23,18 +23,19 @@ const Article = () => {
           >
             +โพสใหม่
           </Link>
-          {articleData 
-            ? articleData.map((data) => (
-                <ArticleCard
-                  id={data.id}
-                  image={data.image}
-                  link={data.id}
-                  header={data.title}
-                  createdDate={data.created_at}
-                  summary={data.content}
-                />
-              ))
-            : "Unable to fetch data"}
+          {articleData && articleData.map((data) =>
+          {
+            <ArticleCard
+              id={data.id}
+              image={data.image}
+              link={data.id}
+              header={data.title}
+              createdDate={data.created_at}
+              summary={data.content}
+            />
+          }
+          )
+        }
         </section>
       </Section>
     </Layout>

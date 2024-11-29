@@ -1,12 +1,9 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import api from "../api";
 
-const ArticleContext = createContext([]);
+const ProductContext = createContext([]);
 
-
-
-
-const ArticleProvider = ({children}) => {
+const ProductProvider = ({children}) => {
     const [articleData,setArticleData] = useState([]);
     useEffect(() => {
         api.get("/api/article/", { withCredentials: true })

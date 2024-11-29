@@ -12,31 +12,26 @@ const Login = () => {
 
   const submit = async (e) => {
     e.preventDefault();
+    
+    const user = {
+      username: username,
+      password: password
+    };
+
+    const {data} = await api.post('/token',
+    user ,{headers: {'Content-Type': 'application/json'}},{withCredentials: true});
+    localStorage.clear();
+    localStorage.setItem('access_token', data.access);
+    localStorage.setItem('refresh_token', data.refresh);
+    api.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`;
+     window.location.href = '/'
   };
 
-  const user = {
-    username: username,
-    password: password,
-  };
-
-  const { data } = api.post(
-    "http://localhost:8000/token/",
-    user,
-    { headers: { "Content-Type": "application/json" } },
-    { withCredentials: true }
-  );
-
-  localStorage.clear();
-
-  localStorage.setItem("access_token", data.access);
-  localStorage.setItem("refresh_token", data.refresh);
-  api.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
-  window.location.href = "/";
 
   return (
     <Layout>
       <Section header="Login">
-        <Form className="form-container" onSubmit={submit}>
+        <Form className="form-container" onSubmit={submit} >
           <Form.Group controlId="formUserName" className="form-group">
             <Form.Label className="paragraph black">Username</Form.Label>
             <Form.Control

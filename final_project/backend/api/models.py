@@ -10,7 +10,6 @@ class Article(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="article")
-
     def __str__(self):
         return self.title
     
@@ -31,15 +30,11 @@ class ShopItem(models.Model):
     quantity = models.IntegerField()
 
 class CartItem(models.Model):
-    image = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_image")
-    item_name = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_item_name")
-    price = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_item_price")
+    item = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_item_name")
     quantity = models.IntegerField()
     customer =  models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="customer")
 
 class SalesOrder(models.Model):
-    image = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_image")
     item_name = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_name")
-    price = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_price")
     quantity = models.IntegerField()
     customer =  models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="customer")
