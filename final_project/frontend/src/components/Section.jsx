@@ -4,7 +4,7 @@ import "../styles/section.css";
 const Section = (props) => {
   return (
     <Container className="main-container">
-      <h1 className="heading1">{props.header}</h1>
+      <h1 className="heading2">{props.header}</h1>
       {props.children}
     </Container>
   );
