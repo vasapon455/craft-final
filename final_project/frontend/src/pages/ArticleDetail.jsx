@@ -1,34 +1,21 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import api from "../api";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
 import { Container } from "react-bootstrap";
+import { useArticles } from "../contexts/ArticleProvider";
 import CommentCard from "../components/CommentCard";
+import NotFound from "../components/NotFound";
 
 const ArticleDetail = () => {
-  const article_id = useParams()
-  const [articleData, setArticleData] = useState([]);
+  const article_id = useParams();
+  const articleData = useArticles();
+  const data = articleData.filter((data)=> data.id = article_id)
   
-  useEffect(() => {
-    api
-      .get(`/article/${article_id}/`, { withCredentials: true })
-      .then((response) => {
-        setArticleTitle(response.data.title);
-      })
-      .catch((error) => {
-        console.error("Error Fetching the article.", error);
-      });
-  }, [articleData]);
-
-
-  let data = articleData.filter((data) => (data.id = article_id));
-  console.log(data)
-
   return (
     <Layout>
-      <Section header={`${data[0].title}`}>
+      {articleData.length > 0?
+      <Section header={`${articleData.title}`}>
         <Container
           style={{
             display: "flex",
@@ -59,20 +46,23 @@ const ArticleDetail = () => {
         </Container>
         <img src="./article1.jpeg" />
         <div className="text-container">
-          <p className="paragraph black">{data[0].content}</p>
+          <p className="paragraph black">{articleData.content}</p>
         </div>
       </Section>
+      : <NotFound/>}
+      {articleData.comment.length >0 ? 
       <section className="comment">
         <p className="paragraph black">Comment</p>
-        {data[0].comment.map((comment) => (
+        {data.map((comment) => (
           <CommentCard
             id={comment.id}
             comment={comment.comment}
             author={comment.author}
             commentedDate={comment.commentedDate}
           />
-        ))}
+        ))}  
       </section>
+      : <NotFound/>}
     </Layout>
   );
 };

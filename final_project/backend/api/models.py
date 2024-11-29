@@ -25,6 +25,7 @@ class Comment(models.Model):
 
 class ShopItem(models.Model):
     image = models.ImageField(upload_to='shop-item/', default="/shopping/item-example.jpg")
+    category = models.CharField(max_legnth="50")
     item_name= models.CharField(max_length="100")
     price = models.IntegerField()
     quantity = models.IntegerField()
@@ -37,4 +38,5 @@ class CartItem(models.Model):
 class SalesOrder(models.Model):
     item_name = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_name")
     quantity = models.IntegerField()
+    price = models.IntegerField()
     customer =  models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="customer")
