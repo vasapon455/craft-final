@@ -19,4 +19,23 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comment")
     
     def __str__(self):
-        return self.title
+        return self.comment_text
+
+class ShopItem(models.Model):
+    image = models.ImageField(upload_to='shop-item/', default="/shopping/item-example.jpg")
+    item_name= models.CharField(max_length="100")
+    price = models.IntegerField()
+    quantity = models.IntegerField()
+
+class CartItem(models.Model):
+    image = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_image")
+    item_name = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_item_name")
+    price = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_item_price")
+    quantity = models.IntegerField()
+
+class SalesOrder(models.Model):
+    image = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_image")
+    item_name = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_name")
+    price = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_price")
+    quantity = models.IntegerField()
+    customer =  models.ForeignKey(User, on_delete=models.CASCADE, related_name="customer")
