@@ -26,37 +26,6 @@ const ArticleDetail = () => {
   let data = articleData.filter((data) => (data.id = article_id));
   console.log(data)
 
-  const commentData = [
-    {
-      id: 1,
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet nisl vitae porttitor dignissim. Etiam euismod sapien ac fringilla molestie. Nulla et interdum odio, pulvinar blandit nisl. Praesentbero Lorem ipsum dolor sit amet,",
-      author: "A",
-      commentedDate: "20/12/2024",
-    },
-    {
-      id: 2,
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet nisl vitae porttitor dignissim. Etiam euismod sapien ac fringilla molestie. Nulla et interdum odio, pulvinar blandit nisl. Praesentbero Lorem ipsum dolor sit amet,",
-      author: "A",
-      commentedDate: "20/12/2024",
-    },
-    {
-      id: 3,
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet nisl vitae porttitor dignissim. Etiam euismod sapien ac fringilla molestie. Nulla et interdum odio, pulvinar blandit nisl. Praesentbero Lorem ipsum dolor sit amet,",
-      author: "A",
-      commentedDate: "20/12/2024",
-    },
-    {
-      id: 4,
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet nisl vitae porttitor dignissim. Etiam euismod sapien ac fringilla molestie. Nulla et interdum odio, pulvinar blandit nisl. Praesentbero Lorem ipsum dolor sit amet,",
-      author: "A",
-      commentedDate: "20/12/2024",
-    },
-  ];
-
   return (
     <Layout>
       <Section header={`${data[0].title}`}>
@@ -95,7 +64,7 @@ const ArticleDetail = () => {
       </Section>
       <section className="comment">
         <p className="paragraph black">Comment</p>
-        {commentData.map((comment) => (
+        {data[0].comment.map((comment) => (
           <CommentCard
             id={comment.id}
             comment={comment.comment}
