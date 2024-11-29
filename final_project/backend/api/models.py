@@ -1,12 +1,15 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,AbstractUser
+
+class CustomUser(AbstractUser):
+    address = models.TextField(max_length=1000)
 
 class Article(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='article/', default="/shopping/item-example.jpg")
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="article")
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="article")
 
     def __str__(self):
         return self.title
@@ -16,7 +19,7 @@ class Comment(models.Model):
     commented_post = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='post_comments')
     is_approved = models.BooleanField()
     date_created = models.DateTimeField(auto_now_add=True)    
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comment")
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="comment")
     
     def __str__(self):
         return self.comment_text
@@ -32,11 +35,11 @@ class CartItem(models.Model):
     item_name = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_item_name")
     price = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_item_price")
     quantity = models.IntegerField()
-    customer =  models.ForeignKey(User, on_delete=models.CASCADE, related_name="customer")
+    customer =  models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="customer")
 
 class SalesOrder(models.Model):
     image = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_image")
     item_name = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_name")
     price = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_price")
     quantity = models.IntegerField()
-    customer =  models.ForeignKey(User, on_delete=models.CASCADE, related_name="customer")
+    customer =  models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="customer")

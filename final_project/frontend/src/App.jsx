@@ -13,16 +13,13 @@ import ContactUs from "./pages/ContactUs";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { ArticleContext} from "./components/ArticleContext";
-
+import ProductProvider from "./contexts/ProductProvider";
+import ArticleProvider from "./contexts/ArticleProvider";
 
 const App = () => {
-  
-
-
   return (
-    <ArticleContext.Provider >
-      <BrowserRouter>
+    <BrowserRouter>
+      <ArticleProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/article" element={<Article />} />
@@ -36,8 +33,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
-      </BrowserRouter>
-    </ArticleContext.Provider>
+      </ArticleProvider>
+    </BrowserRouter>
   );
 };
 

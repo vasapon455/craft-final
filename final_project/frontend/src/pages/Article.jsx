@@ -2,22 +2,11 @@ import React from "react";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
 import ArticleCard from "../components/ArticleCard";
-import {  Link } from "react-router-dom";
-import { useState,useEffect } from "react";
-import api from "../api";
+import { Link } from "react-router-dom";
+import { useArticles } from "../contexts/ArticleProvider";
+
 const Article = () => {
-
-  const [articleData, setArticleData] = useState([]);
-  useEffect(() => {
-    api
-      .get("/api/article/", { withCredentials: true })
-      .then((res) => setArticleData(res.data))
-      .catch((error) => {
-        console.error("Error Fetching the article.", error);
-      });
-  }, [articleData]);
-
-console.log(articleData)
+  const articleData = useArticles();
 
   return (
     <Layout>
@@ -34,16 +23,18 @@ console.log(articleData)
           >
             +โพสใหม่
           </Link>
-          {articleData.map((data)=>
-            <ArticleCard
-              id={data.id}
-              image={data.image}
-              link={data.id}
-              header={data.title}
-              createdDate={data.created_at}
-              summary={data.content}
-            />
-         ) }
+          {articleData 
+            ? articleData.map((data) => (
+                <ArticleCard
+                  id={data.id}
+                  image={data.image}
+                  link={data.id}
+                  header={data.title}
+                  createdDate={data.created_at}
+                  summary={data.content}
+                />
+              ))
+            : "Unable to fetch data"}
         </section>
       </Section>
     </Layout>

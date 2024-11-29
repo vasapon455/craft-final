@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Article,ShopItem
+from .models import Article,ShopItem,Comment,CartItem,SalesOrder
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,6 +20,13 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = ["id", "image","title","content","created_at","author"]
         extra_kwrags = {"author":{"read_only": True}}
 
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields=["id","comment_text","commented_post","is_approved","date_created","author"]
+        extra_kwrags = {"author":{"read_only": True}}
+
+
 class ShopItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShopItem
@@ -27,12 +34,12 @@ class ShopItemSerializer(serializers.ModelSerializer):
    
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ShopItem
+        model = CartItem
         fields = ["id", "image","item_name","price","quantity","customer"]
         extra_kwrags = {"customer":{"read_only": True}}
 
 class SalesOrderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ShopItem
+        model = SalesOrder
         fields = ["id", "image","item_name","price","quantity","customer"]
         extra_kwrags = {"customer":{"read_only": True}}

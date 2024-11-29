@@ -1,20 +1,73 @@
 from django.shortcuts import render,reverse
-from django.contrib.auth.models import User
-from .models import Article,ShopItem,CartItem,SalesOrder
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .models import Article,ShopItem,CartItem,SalesOrder,CustomUser,Comment
 from rest_framework import generics
-from .serializers import UserSerializer,ArticleSerializer,ShopItemSerializer,CartItemSerializer,SalesOrderSerializer
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.view import APIView
+from .serializers import UserSerializer,ArticleSerializer,ShopItemSerializer,CartItemSerializer,SalesOrderSerializer,CommentSerializer
 
 
-class CreateUserView(generics.CreateAPIView):
-    queryset = User.objects.all()
+
+class UserCreateView(generics.CreateAPIView):
+    queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+class LogoutView(APIView):
+     permission_classes = (IsAuthenticated,)
+     def post(self, request):
+          
+          try:
+               refresh_token = request.data["refresh_token"]
+               token = RefreshToken(refresh_token)
+               token.blacklist()
+               return Response(status=status.HTTP_205_RESET_CONTENT)
+          except Exception as e:
+               return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class EditUserView( LoginRequiredMixin, UserPassesTestMixin, generics.RetrieveUpdateAPIView):
+    def retrieve(self, request, *args, **kwargs):
+        serializer = self.serializer_class(request.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def update(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ArticleCreate(LoginRequiredMixin,generics.ListCreateAPIView):
+    serializer_class = ArticleSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perfrom_create(self,serializer):
+        if serializer.is_valid():
+            serializer.save(author=self.request.user)
+        else:
+            print(serializer.errors)
+
+class ArticleDelete(LoginRequiredMixin,UserPassesTestMixin, generics.DestroyAPIView):
+    serializer_class = ArticleSerializer
+    permission_classes = [IsAuthenticated]
+
 
 class ArticleData (generics.ListAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = [AllowAny]
+
+class CommentData (generics.ListAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+    def perfrom_create(self,serializer):
+        if serializer.is_valid():
+            serializer.save(author=self.request.user)
+        else:
+            print(serializer.errors)
 
 class ShopItemData (generics.ListAPIView):
     queryset = ShopItem.objects.all()
