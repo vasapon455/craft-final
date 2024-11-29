@@ -46,7 +46,7 @@ const Login = () => {
               className="field"
               onChange={(e) => setPassword(e.target.value)}
             />
-           <Link to="/register">
+           <Link to="/forgot-password">
             <div style={{textAlign: "right", margin:"5px"}}>
             <span className="caption black underline">Forgot Password?</span>
             </div>

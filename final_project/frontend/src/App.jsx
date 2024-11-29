@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ArticleProvider from "./contexts/ArticleProvider";
 import ProductProvider from "./contexts/ProductProvider";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword/>} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </ProductProvider>
