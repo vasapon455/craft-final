@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Article,ShopItem,Comment,CartItem,SalesOrder
+from .models import Article,ShopItem,Comment,CartItem,SalesOrder,CustomUser
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,13 +11,8 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         print(validated_data)
         password = validated_data.pop('password')
-        user = User.objects.create_user(**validated_data)
+        user = CustomUser.objects.create_user(**validated_data)
         return user
-
-class TokenSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Token
-        fields = ["token", "created_at", "expires_at", "user_id", "is_used"]
 
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,18 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User,AbstractUser
+from django.contrib.auth.models import AbstractUser
 
+# Create your models here.
 class CustomUser(AbstractUser):
     id = models.AutoField(primary_key=True)
     address = models.CharField(max_length=1000)
-    email = models.EmailField(unique=True)
-
-class Token(models.Model):
-    id = models.AutoField(primary_key=True)
-    token = models.CharField(max_length=255)
-    created_at = models.DateTimeField()
-    expires_at = models.DateTimeField()
-    user_id = models.IntegerField()
-    is_used = models.BooleanField(default=False)
 
 
 class Article(models.Model):
@@ -39,8 +31,8 @@ class Comment(models.Model):
 class ShopItem(models.Model):
     id = models.AutoField(primary_key=True)
     image = models.ImageField(upload_to='shop-item/', default="/shopping/item-example.jpg")
-    category = models.CharField(max_length="50")
-    item_name= models.CharField(max_length="100")
+    category = models.CharField(max_length=50)
+    item_name= models.CharField(max_length=100)
     price = models.IntegerField()
     quantity = models.IntegerField()
 
@@ -48,11 +40,11 @@ class CartItem(models.Model):
     id = models.AutoField(primary_key=True)
     item = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_item_name")
     quantity = models.IntegerField()
-    customer =  models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="customer")
+    customer =  models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="customer_cart")
 
 class SalesOrder(models.Model):
     id = models.AutoField(primary_key=True)
-    item_name = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_name")
+    item_name = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="order_item")
     quantity = models.IntegerField()
     price = models.IntegerField()
-    customer =  models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="customer")
+    customer =  models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="customer_order")
