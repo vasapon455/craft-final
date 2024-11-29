@@ -26,7 +26,7 @@ const NavBar = () => {
             <img
               className="navbar-logo"
               src={
-                clickHamburger ? "navbar/logo-click-ham.svg" : "navbar/logo.svg"
+                clickHamburger ? "/navbar/logo-click-ham.svg" : "/navbar/logo.svg"
               }
             />
           </Col>

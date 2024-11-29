@@ -7,10 +7,7 @@ import Section from "../components/Section";
 import { Container } from "react-bootstrap";
 import CommentCard from "../components/CommentCard";
 
-const ArticleDetail = () => {
-  const { article_id } = useParams();
-  const [articleTitle, setArticleTitle] = useState("");
-  const [recentArticles, setRecentArticles] = useState([]);
+const ArticleDetail1 = () => {
 
   useEffect(() => {
     api
@@ -57,7 +54,7 @@ const ArticleDetail = () => {
 
   return (
     <Layout>
-      <Section header={articleTitle}>
+      <Section header={Article1}>
         <Container
           style={{
             display: "flex",
@@ -121,4 +118,4 @@ const ArticleDetail = () => {
   );
 };
 
-export default ArticleDetail;
+export default ArticleDetail1;
