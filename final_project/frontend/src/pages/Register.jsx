@@ -37,7 +37,7 @@ const Register = () => {
         </Form>
         <Container className="button-group">
           <Button variant="red" type="submit" className="primary-button">
-            Register
+          <p className="paragraph white">Register</p>
           </Button>
           <Link to="/login">
             <p className="paragraph black underline">Login</p>

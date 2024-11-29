@@ -2,30 +2,27 @@ import Layout from "../components/Layout";
 import Section from "../components/Section";
 import "../styles/login-register.css";
 import { Form, Button, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from "../api";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const submit = async (e) => {
+   
     e.preventDefault();
     
     const user = {
       username: username,
       password: password
     };
-
-    const {data} = await api.post('/token',
-    user ,{headers: {'Content-Type': 'application/json'}},{withCredentials: true});
-    localStorage.clear();
-    localStorage.setItem('access_token', data.access);
-    localStorage.setItem('refresh_token', data.refresh);
-    api.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`;
-     window.location.href = '/'
+    const res = await api.post('/api/user/login',user)
+    const data = res.data
+    data.sucess? navigate('/'):console.error('Error')
   };
+
 
 
   return (
@@ -49,6 +46,11 @@ const Login = () => {
               className="field"
               onChange={(e) => setPassword(e.target.value)}
             />
+           <Link to="/register">
+            <div style={{textAlign: "right", margin:"5px"}}>
+            <span className="caption black underline">Forgot Password?</span>
+            </div>
+          </Link>
           </Form.Group>
         </Form>
         <Container className="button-group">

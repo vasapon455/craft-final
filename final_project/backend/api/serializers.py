@@ -14,6 +14,11 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         return user
 
+class TokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Token
+        fields = ["token", "created_at", "expires_at", "user_id", "is_used"]
+
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
