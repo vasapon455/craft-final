@@ -32,6 +32,7 @@ class CartItem(models.Model):
     item_name = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_item_name")
     price = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="cart_item_price")
     quantity = models.IntegerField()
+    customer =  models.ForeignKey(User, on_delete=models.CASCADE, related_name="customer")
 
 class SalesOrder(models.Model):
     image = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="item_image")

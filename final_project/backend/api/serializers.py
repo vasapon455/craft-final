@@ -24,4 +24,15 @@ class ShopItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShopItem
         fields = ["id", "image","item_name","price","quantity"]
-        extra_kwrags = {"author":{"read_only": True}}
+   
+class CartItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ShopItem
+        fields = ["id", "image","item_name","price","quantity","customer"]
+        extra_kwrags = {"customer":{"read_only": True}}
+
+class SalesOrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ShopItem
+        fields = ["id", "image","item_name","price","quantity","customer"]
+        extra_kwrags = {"customer":{"read_only": True}}
