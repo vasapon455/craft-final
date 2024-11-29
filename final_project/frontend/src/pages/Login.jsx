@@ -13,7 +13,6 @@ const Login = () => {
   const submit = async (e) => {
    
     e.preventDefault();
-    
     const user = {
       username: username,
       password: password
