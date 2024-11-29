@@ -1,11 +1,12 @@
+import "../styles/shopping.css";
 import React from "react";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
 import ShoppingFilter from "../components/ShoppingFilter";
 import { Link } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
-import "../styles/shopping.css";
 import ShoppingCard from "../components/ShoppingCard";
+import { useProducts } from "../contexts/ProductProvider";
+import NotFound from "../components/NotFound";
 
 const category = [
   "All",
@@ -35,6 +36,7 @@ const shopItem = [
 ];
 
 const Shopping = () => {
+  const shopItem = useProducts();
   return (
     <Layout>
       <Section header={"Shopping"}>
@@ -58,17 +60,18 @@ const Shopping = () => {
         </section>
       </Section>
       <div className="shopping-card-container">
-        {shopItem.map((item) => (
+        {shopItem.length >0? shopItem.map((item) => (
           <ShoppingCard
             id={item.id}
             image={item.image}
             name={item.name}
             price={item.price}
           />
-        ))}
+        ))
+        :<NotFound/>}
       </div>
     </Layout>
-  );
+  )
 };
 
 export default Shopping;

@@ -12,12 +12,10 @@ const ArticleProvider = ({children}) => {
         api.get("/api/article/", { withCredentials: true })
           .then((res) => setArticleData(res.data))
           .catch((error) => {
-            console.error("Error Fetching the article.", error);
+            console.error("Error fetching the articles.", error);
           });
       }, [articleData]);
 
-   
-    
    return  <ArticleContext.Provider value={articleData}>{children}</ArticleContext.Provider>;
   }
 

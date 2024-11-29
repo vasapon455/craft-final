@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User,AbstractUser
 
-class CustomUser(AbstractUser):
-    address = models.TextField(max_length=1000)
 
 class Article(models.Model):
     title = models.CharField(max_length=100)

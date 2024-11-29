@@ -11,12 +11,12 @@ const ContactUs = () => {
     <Layout>
       <Section header="Contact Us">
         <Container className="contact-inner">
-        <section>
+        <section >
         <h2 className="paragraph black underline">Telephone</h2>
         <p className="sub-heading black">{mobile}</p>
         </section>
         <section>
-        <h2 className="paragraph black underline">Email Address</h2>
+        <h2 className="paragraph black underline" >Email Address</h2>
         <p className="sub-heading black">{emailAddress}</p>
         </section>
         </Container>

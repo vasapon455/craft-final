@@ -9,7 +9,8 @@
 }
 
 .about-us-image{
-    width: 60vw;
+    height: auto;
+    width: 80vw;
     object-fit: scale-down;
 }
 

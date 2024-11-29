@@ -13,26 +13,28 @@ import ContactUs from "./pages/ContactUs";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
 import ArticleProvider from "./contexts/ArticleProvider";
+import ProductProvider from "./contexts/ProductProvider";
 
 const App = () => {
   return (
     <BrowserRouter>
       <ArticleProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/article" element={<Article />} />
-          <Route path="/article/:article_id" element={<ArticleDetail />} />
-          <Route path="/shopping" element={<Shopping />} />
-          <Route path="/item-detail" element={<ItemDetail />} />
-          <Route path="/promotion" element={<Promotion />} />
-          <Route path="/order-tracking" element={<OrderTracking />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
+        <ProductProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/article" element={<Article />} />
+            <Route path="/article/:article_id" element={<ArticleDetail />} />
+            <Route path="/shopping" element={<Shopping />} />
+            <Route path="/shopping/item-detail/:item_id" element={<ItemDetail />} />
+            <Route path="/promotion" element={<Promotion />} />
+            <Route path="/order-tracking" element={<OrderTracking />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </ProductProvider>
       </ArticleProvider>
     </BrowserRouter>
   );
