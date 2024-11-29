@@ -13,15 +13,10 @@ const ArticleDetail = () => {
   
   useEffect(() => {
     api
-<<<<<<< HEAD
       .get(`/article/${article_id}/`, { withCredentials: true })
       .then((response) => {
         setArticleTitle(response.data.title);
       })
-=======
-      .get("/api/article/", { withCredentials: true })
-      .then((res) => setArticleData(res.data))
->>>>>>> 65499680213b36f150acc956f0acb80d0d54584e
       .catch((error) => {
         console.error("Error Fetching the article.", error);
       });
