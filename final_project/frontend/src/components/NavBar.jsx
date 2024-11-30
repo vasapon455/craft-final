@@ -1,32 +1,43 @@
 import "../styles/navbar.css";
+
 import Container from "react-bootstrap/Container";
 import { Navbar } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useUser } from "../contexts/UserProvider";
+import { ACCESS_TOKEN } from "../constants";
+import { Navigate } from "react-router-dom";
 
 const NavBar = () => {
   const [clickHamburger, setClickHamburger] = useState(false);
 
-  function toggleHamburger(){
-    setClickHamburger((value)=>!value)
-  }
+ function logout(){
+  localStorage.clear();
+  setClickHamburger(false)
+  location.reload();
+  return <Navigate to="/login"/>
+ } 
 
+  function toggleHamburger() {
+    setClickHamburger((value) => !value);
+  }
 
   return (
     <Navbar className="navbar-container" expand="xl">
       <Container>
         <Row className="navbar-inner">
           <Col md={4} className="navbar-login">
-            <Link to="/login">
-              <img src="/navbar/user.svg" className="navbar-login" />
-            </Link>
+           <Link to={!localStorage.getItem(ACCESS_TOKEN)?"/login":"/"} ><img src={!localStorage.getItem(ACCESS_TOKEN)?"/navbar/user.svg":"/navbar/user.svg"} className="navbar-login" /></Link> 
           </Col>
+
           <Col md={4} lg={3} style={{ zIndex: "4" }}>
             <img
               className="navbar-logo"
               src={
-                clickHamburger ? "/navbar/logo-click-ham.svg" : "/navbar/logo.svg"
+                clickHamburger
+                  ? "/navbar/logo-click-ham.svg"
+                  : "/navbar/logo.svg"
               }
             />
           </Col>
@@ -119,16 +130,29 @@ const NavBar = () => {
               </li>
 
               <li>
-                <Link
-                  to="/login"
-                  className={
-                    clickHamburger
-                      ? "sub-heading black navbar-menu-text"
-                      : "paragraph white navbar-menu-text"
-                  }
-                >
-                  Login/Register
-                </Link>
+                { !localStorage.getItem(ACCESS_TOKEN) ? (
+                  <Link
+                    to="/login"
+                    className={
+                      clickHamburger
+                        ? "sub-heading black navbar-menu-text"
+                        : "paragraph white navbar-menu-text"
+                    }
+                  >
+                    Login/Register
+                  </Link>
+                ) : (
+                  <Link
+                    to="/"
+                    className={
+                      clickHamburger
+                        ? "sub-heading black navbar-menu-text"
+                        : "paragraph white navbar-menu-text"
+                    }
+                  onClick={logout}>
+                    Log Out
+                  </Link>
+                )}
               </li>
             </ul>
           </Col>
@@ -146,7 +170,7 @@ const NavBar = () => {
                 <div className="bar3"></div>
               </div>
             ) : (
-              <div className="hamburger-container"  >
+              <div className="hamburger-container">
                 <div className="bar1 change"></div>
                 <div className="bar2 change"></div>
                 <div className="bar3 change"></div>

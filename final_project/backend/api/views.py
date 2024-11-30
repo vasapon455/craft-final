@@ -16,6 +16,7 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
+
 class EditUserView( LoginRequiredMixin, UserPassesTestMixin, generics.RetrieveUpdateAPIView):
     def retrieve(self, request, *args, **kwargs):
         serializer = self.serializer_class(request.user)
@@ -38,7 +39,6 @@ class ArticleCreate(LoginRequiredMixin,generics.ListCreateAPIView):
         else:
             print(serializer.errors)
 
-
 class ArticleDelete(LoginRequiredMixin,UserPassesTestMixin, generics.DestroyAPIView):
     serializer_class = ArticleSerializer
     permission_classes = [IsAuthenticated]
@@ -53,6 +53,16 @@ class CommentData (generics.ListAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [AllowAny]
+
+    def perfrom_create(self,serializer):
+        if serializer.is_valid():
+            serializer.save(author=self.request.user)
+        else:
+            print(serializer.errors)
+
+class CommentCreate(generics.ListCreateAPIView):
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
 
     def perfrom_create(self,serializer):
         if serializer.is_valid():

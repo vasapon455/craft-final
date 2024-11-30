@@ -11,7 +11,7 @@ const ArticleCard = ({image, header, createdDate, summary, id }) => {
       <Container className="article-card" id={id}>
         <Link to={`/article/${id}`} className="link">
         <Row className="article-inner">
-          <Col lg={4}>
+          <Col lg={4}> 
             <div className="article-card-image">
               <img src={image} width={"100%"} height={"100%"}/>
             </div>

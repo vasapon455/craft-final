@@ -16,6 +16,7 @@
   margin: 20px;
   gap: 20px;
   text-overflow: ellipsis;
+  width: auto;
 }
 
 .article-card-image {
@@ -28,6 +29,7 @@
 .article-card-right {
   display: flex;
   max-height: 220px;
+  width: 40vw;
   flex-direction: column;
   color: #f0f0f0;
   text-align: left;

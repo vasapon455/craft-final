@@ -3,9 +3,6 @@ import api from "../api";
 
 const ArticleContext = createContext([]);
 
-
-
-
 const ArticleProvider = ({children}) => {
     const [articleData,setArticleData] = useState([]);
     const [commentData,setCommentData] = useState([])
@@ -22,7 +19,7 @@ const ArticleProvider = ({children}) => {
         api.get("/api/article/comment", { withCredentials: true })
           .then((res) => setCommentData(res.data))
           .catch((error) => {
-            console.error("Error fetching the articles.", error);
+            console.error("Error fetching the comments.", error);
           });
       }, [commentData]);
 

@@ -1,10 +1,10 @@
-from django.contrib.auth.models import User
+
 from rest_framework import serializers
 from .models import Article,ShopItem,Comment,CartItem,SalesOrder,CustomUser
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = CustomUser
         fields = ["id", "username", "password"]
         extra_kwargs = {"password": {"write_only": True}}
 
@@ -14,7 +14,6 @@ class UserSerializer(serializers.ModelSerializer):
         user = CustomUser.objects.create_user(**validated_data)
         return user
   
-
 class ArticleSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
     class Meta:
@@ -24,6 +23,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
+    commented_post = serializers.StringRelatedField()
     class Meta:
         model = Comment
         fields=["id","comment_text","commented_post","is_approved","date_created","author"]

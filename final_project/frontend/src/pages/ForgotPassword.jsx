@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
-import "../styles/login-register.css"
 import { Form, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 

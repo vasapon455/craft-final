@@ -16,6 +16,7 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+    
     def author_full_name(self):
         return self.author.get_full_name()
     author_full_name.short_description = 'Full Name' 
@@ -34,6 +35,10 @@ class Comment(models.Model):
     def author_full_name(self):
         return self.author.get_full_name()
     author_full_name.short_description = 'Full Name' 
+
+    def commented_post_full_name(self):
+        return self.commented.get_full_name()
+    commented_post_full_name.short_description = 'Comment'
 
 class ShopItem(models.Model):
     id = models.AutoField(primary_key=True)

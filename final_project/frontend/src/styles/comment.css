@@ -24,6 +24,22 @@
 ;
 }
 
+.comment-card-create {
+  display: flex;
+  width: 80vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  place-content: center;
+  background-color: #f0f0f0;
+  padding: 40px;
+  padding-left: 0px;
+  gap: 20px;
+  text-align: left;
+  margin: 20px;
+  border-radius: 6px;
+}
+
 .comment-card p{
     color: #f0f0f0;
 }
@@ -41,6 +57,8 @@
   justify-content: left;
   align-items: left;
 }
+
+
 
 .comment-inner-left{
   width: 20vw;

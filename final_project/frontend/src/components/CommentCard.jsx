@@ -6,7 +6,7 @@ const CommentCard = ({ id, comment, author, commentedDate }) => {
 
   const formatDate = commentedDate.slice(0,10)
   return (
-    <Container fluid className="comment-card">
+    <Container fluid className="comment-card" id={id}>
       <Row className="comment-row">
         <Col  className="comment-inner-left">
           <p className="paragraph black">ความคิดเห็นที่ {id}</p>
@@ -39,10 +39,10 @@ const CommentCard = ({ id, comment, author, commentedDate }) => {
         </Col>
       </Row>
       <Row className="comment-row">
-        <Col lg={12} className="comment-inner-left">
+        <Col  className="comment-inner-left">
           <p className="paragraph black"> {author}</p>
         </Col>
-        <Col lg={12} className="comment-inner-right">
+        <Col  className="comment-inner-right">
           <p className="paragraph black">{formatDate}</p>
         </Col>
       </Row>
