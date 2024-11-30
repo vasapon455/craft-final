@@ -52,6 +52,7 @@ class ArticleData (generics.ListAPIView):
 class CommentData (generics.ListAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    permission_classes = [AllowAny]
 
     def perfrom_create(self,serializer):
         if serializer.is_valid():

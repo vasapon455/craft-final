@@ -6,7 +6,6 @@ class CustomUser(AbstractUser):
     id = models.AutoField(primary_key=True)
     address = models.CharField(max_length=1000)
 
-
 class Article(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
@@ -14,8 +13,12 @@ class Article(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="article")
+
     def __str__(self):
         return self.title
+    def author_full_name(self):
+        return self.author.get_full_name()
+    author_full_name.short_description = 'Full Name' 
     
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)
@@ -24,9 +27,13 @@ class Comment(models.Model):
     is_approved = models.BooleanField()
     date_created = models.DateTimeField(auto_now_add=True)    
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="comment")
-    
+   
     def __str__(self):
         return self.comment_text
+    
+    def author_full_name(self):
+        return self.author.get_full_name()
+    author_full_name.short_description = 'Full Name' 
 
 class ShopItem(models.Model):
     id = models.AutoField(primary_key=True)

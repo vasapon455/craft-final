@@ -5,6 +5,7 @@ const ArticleContext = createContext("");
 
 const ArticleProvider = ({ children }) => {
   const [articleData, setArticleData] = useState([]);
+  const [commentData, setCommentData] = useState([])
 
   useEffect(() => {
     api

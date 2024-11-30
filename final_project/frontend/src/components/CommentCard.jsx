@@ -3,6 +3,8 @@ import "../styles/comment.css";
 import { Link } from "react-router-dom";
 
 const CommentCard = ({ id, comment, author, commentedDate }) => {
+
+  const formatDate = commentedDate.slice(0,10)
   return (
     <Container fluid className="comment-card">
       <Row className="comment-row">
@@ -30,9 +32,10 @@ const CommentCard = ({ id, comment, author, commentedDate }) => {
       </Row>
       <Row className="comment-row">
         <Col
-          style={{ textAlign: "left" }}
+          style={{ textAlign: "left", width:"62vw" }}
+          className="comment-text"
         >
-          <p className="paragraph white">{comment}</p>
+          <div className="paragraph white" >{comment}</div>
         </Col>
       </Row>
       <Row className="comment-row">
@@ -40,7 +43,7 @@ const CommentCard = ({ id, comment, author, commentedDate }) => {
           <p className="paragraph black"> {author}</p>
         </Col>
         <Col lg={12} className="comment-inner-right">
-          <p className="paragraph black">{commentedDate}</p>
+          <p className="paragraph black">{formatDate}</p>
         </Col>
       </Row>
     </Container>

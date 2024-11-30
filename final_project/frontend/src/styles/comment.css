@@ -36,6 +36,12 @@
     text-align: left 
 }
 
+.comment-text{
+  display: flex;
+  justify-content: left;
+  align-items: left;
+}
+
 .comment-inner-left{
   width: 20vw;
   text-align: center;

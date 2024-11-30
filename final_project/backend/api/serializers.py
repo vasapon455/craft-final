@@ -13,14 +13,17 @@ class UserSerializer(serializers.ModelSerializer):
         password = validated_data.pop('password')
         user = CustomUser.objects.create_user(**validated_data)
         return user
+  
 
 class ArticleSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
     class Meta:
         model = Article
         fields = ["id", "image","title","content","created_at","author"]
         extra_kwrags = {"author":{"read_only": True}}
 
 class CommentSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
     class Meta:
         model = Comment
         fields=["id","comment_text","commented_post","is_approved","date_created","author"]

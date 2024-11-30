@@ -1,21 +1,27 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+
 import Layout from "../components/Layout";
 import Section from "../components/Section";
-import { Container } from "react-bootstrap";
-import { useArticles } from "../contexts/ArticleProvider";
+
 import CommentCard from "../components/CommentCard";
 import NotFound from "../components/NotFound";
 
+import { useParams, Link } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { useArticles } from "../contexts/ArticleProvider";
+
 const ArticleDetail = () => {
-  const article_id = useParams();
-  const articleData = useArticles();
-  const data = articleData.filter((data)=> data.id = article_id)
+  const [articles , comment] = useArticles();
+  const {article_id} = useParams();
+
+  const item = articles[article_id-1]
+  
+  console.log(item,article_id,comment)
   
   return (
     <Layout>
-      {articleData.length > 0?
-      <Section header={`${articleData.title}`}>
+      {item?
+      (<Section header={item.title}>
         <Container
           style={{
             display: "flex",
@@ -44,21 +50,21 @@ const ArticleDetail = () => {
             +ลบ
           </Link>
         </Container>
-        <img src="./article1.jpeg" />
+        <img src={item.image} width="1000px" height="auto" />
         <div className="text-container">
-          <p className="paragraph black">{articleData.content}</p>
+          <p className="paragraph black">{item.content}</p>
         </div>
-      </Section>
-      : <NotFound/>}
-      {articleData.comment.length >0 ? 
+      </Section>)
+      : (<NotFound/>)}
+      {comment.length >0 ? 
       <section className="comment">
         <p className="paragraph black">Comment</p>
-        {data.map((comment) => (
+        {comment.map((comment) => (
           <CommentCard
             id={comment.id}
-            comment={comment.comment}
+            comment={comment.comment_text}
             author={comment.author}
-            commentedDate={comment.commentedDate}
+            commentedDate={comment.date_created}
           />
         ))}  
       </section>

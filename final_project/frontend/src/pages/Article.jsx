@@ -7,11 +7,11 @@ import { useArticles } from "../contexts/ArticleProvider";
 import NotFound from "../components/NotFound";
 
 const Article = () => {
-  const articleData = useArticles();
+  const [data , comment] = useArticles();
 
   return (
     <Layout>
-      {articleData ? (
+      {data ? (
         <Section header="Article">
           <section id="article">
             <Link
@@ -25,12 +25,11 @@ const Article = () => {
             >
               +โพสใหม่
             </Link>
-            {articleData.length > 0 ? (
-              articleData.map((data) => {
-                <ArticleCard
+            {data.length > 0 ? (
+              data.map((data) => {
+                return <ArticleCard
                   id={data.id}
                   image={data.image}
-                  link={data.id}
                   header={data.title}
                   createdDate={data.created_at}
                   summary={data.content}

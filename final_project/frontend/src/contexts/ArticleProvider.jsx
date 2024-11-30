@@ -8,6 +8,8 @@ const ArticleContext = createContext([]);
 
 const ArticleProvider = ({children}) => {
     const [articleData,setArticleData] = useState([]);
+    const [commentData,setCommentData] = useState([])
+
     useEffect(() => {
         api.get("/api/article/", { withCredentials: true })
           .then((res) => setArticleData(res.data))
@@ -16,7 +18,15 @@ const ArticleProvider = ({children}) => {
           });
       }, [articleData]);
 
-   return  <ArticleContext.Provider value={articleData}>{children}</ArticleContext.Provider>;
+      useEffect(() => {
+        api.get("/api/article/comment", { withCredentials: true })
+          .then((res) => setCommentData(res.data))
+          .catch((error) => {
+            console.error("Error fetching the articles.", error);
+          });
+      }, [commentData]);
+
+   return  <ArticleContext.Provider value={[articleData,commentData]}>{children}</ArticleContext.Provider>;
   }
 
 export default ArticleProvider;
