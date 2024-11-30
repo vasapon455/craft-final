@@ -21,7 +21,11 @@ const ArticleDetail = () => {
     (comment) => comment.commented_post == item.title
   );
   let number = 1;
-  
+
+
+
+console.log(item)
+
   return (
     <Layout>
       {item ? (

@@ -4,6 +4,15 @@ import { Link } from "react-router-dom";
 
 const CommentCard = ({ id, comment, author, commentedDate }) => {
 
+  const handleDelete = (id) =>{
+    api.delete(`api/article/comment/${id}`).then((res) => {
+      if (res.status === 204) alert("Note deleted!");
+      else alert("Failed to delete note.");
+      
+  })
+  .catch((error) => alert(error));
+
+  };
   const formatDate = commentedDate.slice(0,10)
   return (
     <Container fluid className="comment-card" id={id}>
@@ -22,11 +31,10 @@ const CommentCard = ({ id, comment, author, commentedDate }) => {
             <span className="paragraph white underline">+แก้ไข</span>
           </Link>
           <Link
-            to="/"
            className="pargraph white underline"
           >
-            <span className="paragraph white underline">+ลบ</span>
-            
+            <span className="paragraph white underline" onClick={handleDelete}>+ลบ</span>
+  
           </Link>
         </Col>
       </Row>

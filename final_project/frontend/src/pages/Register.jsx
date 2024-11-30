@@ -14,23 +14,19 @@ const Register = () => {
   const [address, setAddress] = useState("")
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const method = "register";
 
-  const submit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
    
     try {
-      const res = await api.post("/api/user/register/", { username, password });
-      if (method === "register") {
-        localStorage.setItem(ACCESS_TOKEN, res.data.access);
-        localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-        setLoading(true)
+      const res = await api.post("/api/user/register/", { username, password, address });
+     {
         navigate("/");
-      } else {
-        navigate("/login");
-      }
+      } 
+      
     } catch (error) {
       alert(error);
+      navigate("/login");
     } finally {
       setLoading(false);
     }
@@ -39,7 +35,7 @@ const Register = () => {
   return (
     <Layout>
       <Section header="Register">
-        <Form className="form-container">
+        <Form className="form-container" onSubmit={handleSubmit}>
           <Form.Group controlId="formName" className="form-group">
             <Form.Label className="paragraph black">Name</Form.Label>
             <Form.Control

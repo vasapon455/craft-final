@@ -9,15 +9,12 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from .serializers import UserSerializer,ArticleSerializer,ShopItemSerializer,CartItemSerializer,SalesOrderSerializer,CommentSerializer
 
-
-
 class CreateUserView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
-
-class EditUserView( LoginRequiredMixin, UserPassesTestMixin, generics.RetrieveUpdateAPIView):
+class EditUserView(generics.RetrieveUpdateAPIView):
     def retrieve(self, request, *args, **kwargs):
         serializer = self.serializer_class(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -29,7 +26,7 @@ class EditUserView( LoginRequiredMixin, UserPassesTestMixin, generics.RetrieveUp
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class ArticleCreate(LoginRequiredMixin,generics.ListCreateAPIView):
+class ArticleCreate(generics.ListCreateAPIView):
     serializer_class = ArticleSerializer
     permission_classes = [IsAuthenticated]
 
@@ -39,7 +36,7 @@ class ArticleCreate(LoginRequiredMixin,generics.ListCreateAPIView):
         else:
             print(serializer.errors)
 
-class ArticleDelete(LoginRequiredMixin,UserPassesTestMixin, generics.DestroyAPIView):
+class ArticleDelete(generics.DestroyAPIView):
     serializer_class = ArticleSerializer
     permission_classes = [IsAuthenticated]
 
@@ -49,26 +46,25 @@ class ArticleData (generics.ListAPIView):
     serializer_class = ArticleSerializer
     permission_classes = [AllowAny]
 
-class CommentData (generics.ListAPIView):
+class CommentListCreate(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
-    permission_classes = [AllowAny]
-
-    def perfrom_create(self,serializer):
-        if serializer.is_valid():
-            serializer.save(author=self.request.user)
-        else:
-            print(serializer.errors)
-
-class CommentCreate(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        user = self.request.user
+        return Comment.objects.filter(author=user)
+
     def perfrom_create(self,serializer):
         if serializer.is_valid():
             serializer.save(author=self.request.user)
         else:
             print(serializer.errors)
+
+class CommentDelete(generics.DestroyAPIView):
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+
 
 class ShopItemData (generics.ListAPIView):
     queryset = ShopItem.objects.all()

@@ -2,13 +2,14 @@ import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import api from "../api";
 
-const NewCommentCard = ({ page }) => {
-  const [commentext, setCommentText] = useState("");
+
+const NewCommentCard = ( )=> {
+  const [comment_text, setCommentText] = useState("");
 
   const createComment = (e) => {
     e.preventDefault();
     api
-      .post("api/article/comment/new/", {commentext,page})
+      .post("api/article/comment/", {comment_text,})
       .then((res) => {
         if (res.status === 201) alert("Comment created!");
         else alert("Failed to make comment.");
@@ -29,7 +30,7 @@ const NewCommentCard = ({ page }) => {
           type="text"
           placeholder="กรอกความคิดเห็น"
           className="field"
-          style={{ height: "auto", textAlign: "left", paddingBottom: "200px" }}
+          style={{ height: "auto", textAlign: "left", paddingBottom: "200px", width:"60vw" }}
           onChange={(e) => setCommentText(e.target.value)}
         />
       </Form.Group>

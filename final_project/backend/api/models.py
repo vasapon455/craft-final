@@ -7,7 +7,6 @@ class CustomUser(AbstractUser):
     address = models.CharField(max_length=1000)
 
 class Article(models.Model):
-    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='article/', default="/shopping/item-example.jpg")
     content = models.TextField()
@@ -22,10 +21,9 @@ class Article(models.Model):
     author_full_name.short_description = 'Full Name' 
     
 class Comment(models.Model):
-    id = models.AutoField(primary_key=True)
     comment_text = models.CharField(max_length=100)
     commented_post = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='post_comments')
-    is_approved = models.BooleanField()
+    is_approved = models.BooleanField(default=True)
     date_created = models.DateTimeField(auto_now_add=True)    
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="comment")
    
