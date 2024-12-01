@@ -14,7 +14,6 @@ const ShoppingCard = ({ image, name, price, id }) => {
     setReload(true)
   }
 
-
     return (
       <Container className="shopping-card">
         <Link to={`/shopping/${id}`} className="link">

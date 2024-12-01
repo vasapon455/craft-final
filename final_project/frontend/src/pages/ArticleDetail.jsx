@@ -6,7 +6,7 @@ import Section from "../components/Section";
 import CommentCard from "../components/CommentCard";
 import NotFound from "../components/NotFound";
 
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link,useNavigate } from "react-router-dom";
 import { Container, Form, Button } from "react-bootstrap";
 import { useArticles } from "../contexts/ArticleProvider";
 import NewCommentCard from "../components/NewCommentCard";
@@ -16,21 +16,30 @@ import api from "../api";
 const ArticleDetail = () => {
   const [articles, comments] = useArticles();
   const { article_id } = useParams();
-
-  const item = articles[article_id - 1];
+  const item = articles[article_id-1];
+  const navigate = useNavigate()
   
+  
+204
+
+
   const this_comment = comments.filter(
     (comment) => comment.commented_post == item.title
   );
   let number = 1;
-  console.log(localStorage.getItem(ACCESS_TOKEN));
+  
+  console.log(localStorage.getItem(ACCESS_TOKEN))
 
-  const handleDelete = (article_id ) =>{
-    api.delete(`/api/article/${article_id}/`).then((res) => {
-      if (res.status === 204) alert("ลบบทความแล้ว!");
+  const handleDelete = (item) =>{
+    api.delete(`/api/article/${item}/`).then((res) => {
+      if (res.status === 204) {
+        navigate('/article');
+        alert("ลบบทความแล้ว!");
+      }
       else alert("ไม่สามารถลบบทความได้");
   })
   .catch((error) => alert(error));
+  
   }
 
   return (
@@ -60,7 +69,7 @@ const ArticleDetail = () => {
                 textDecoration: "underline",
               }}
               className="paragraph black"
-            onClick={()=>handleDelete(article_id)}>
+            onClick={()=>handleDelete(item.id)}>
               +ลบ
             </Link>
           </Container>

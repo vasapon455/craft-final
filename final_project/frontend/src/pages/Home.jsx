@@ -2,18 +2,22 @@ import React from "react";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
 import ImageCard from "../components/ImageCard";
+import { useProducts } from "../contexts/ProductProvider";
 import '../styles/home.css'
 
 const Home = () => {
 
-const newArrivalItems = [{source:'1',altText:'Hello'},{source:'2',altText:'Hello'},{source:'3',altText:'Hello'},{source:'4',altText:'Hello'},{source:'5',altText:'Hello'},{source:'6',altText:'Hello'}]
+const [product,setProduct] = useProducts()
+
+
+const newArrivalItems = product.filter((product)=> product.category == 'New Arrival')
 
   return (
     <Layout>
         <Section header="New Arrival">
            <section className="new-arrival">
           {newArrivalItems.map((item)=>
-            <ImageCard source={item.source} altText={item.altText}/>
+            <ImageCard source={item.image} altText={item.altText}/>
           )}
         </section>
         </Section>

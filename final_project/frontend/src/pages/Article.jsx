@@ -9,6 +9,7 @@ import { Container } from "react-bootstrap";
 
 const Article = () => {
   const [data , comment] = useArticles();
+  let number = 1
 
   return (
     <Layout>
@@ -36,6 +37,7 @@ const Article = () => {
               data.map((data) => {
                 return <ArticleCard
                   id={data.id}
+                  number={number++}
                   image={data.image}
                   header={data.title}
                   createdDate={data.created_at}

@@ -7,14 +7,12 @@ const ArticleProvider = ({children}) => {
     const [articleData,setArticleData] = useState([]);
     const [commentData,setCommentData] = useState([])
     
-    
-
     const getAricle = ()=>{
       api.get("/api/article/", { withCredentials: true })
       .then((res) => setArticleData(res.data))
       .catch((error) => {
         console.error("Error fetching the articles.", error);
-      },[]);
+      });
     }
 
     const getComment = ()=>{
@@ -25,10 +23,9 @@ const ArticleProvider = ({children}) => {
       });
     }
 
-    useEffect(() => {getComment()
-      },[commentData]);
+    useEffect(() => {getComment()},[commentData]);
 
-    useEffect(()=> {getAricle(),[articleData]}
+    useEffect(()=> {getAricle()}
     )
    
    return  <ArticleContext.Provider value={[articleData,commentData]}>{children}</ArticleContext.Provider>;

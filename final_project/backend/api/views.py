@@ -11,18 +11,7 @@ class CreateUserView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
-    
 
-class EditUserView(generics.RetrieveUpdateAPIView):
-    def retrieve(self, request, *args, **kwargs):
-        serializer = self.serializer_class(request.user)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def update(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class ArticleDetailDelete(generics.RetrieveDestroyAPIView):
     queryset = Article.objects.all()
@@ -73,6 +62,12 @@ class CommentDetailDelete(generics.RetrieveDestroyAPIView):
         user = self.request.user
         return Comment.objects.filter(author=user)
 
+class CommentUpdate(generics.UpdateAPIView):
+      queryset = Comment.objects.all()
+      serializer_class = CommentSerializer
+      permission_classes = [IsAuthenticated]
+
+
 class ShopItemData (generics.ListAPIView):
     queryset = ShopItem.objects.all()
     serializer_class = ShopItemSerializer
@@ -99,7 +94,11 @@ class SalesOrderData (generics.ListCreateAPIView):
     serializer_class = SalesOrderSerializer
     permission_classes = [AllowAny]
 
+    def get_queryset(self):
+        user = self.request.user
+        return SalesOrder.objects.filter(customer=user)
+
     def perform_create(self, serializer):
-        item = self.request.data.get('customer')
-        serializer.save(customer=self.request.user)
+        user = self.request.user
+        serializer.save(customer=user)
         return Response({"message": "Order Added"}, status=status.HTTP_201_CREATED)

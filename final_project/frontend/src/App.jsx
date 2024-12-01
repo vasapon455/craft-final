@@ -27,9 +27,9 @@ const App = () => {
       <ArticleProvider>
         <ProductProvider>
           <CartProvider>
-          <UserProvider>
+   
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route exact path="/" element={<Home />} />
               <Route path="/article" element={<Article />} />
               <Route path ="/article/new" element={<ProtectedRoute><NewArticle/></ProtectedRoute>} />
               <Route path="/article/:article_id/" element={<ArticleDetail />} />
@@ -61,8 +61,7 @@ const App = () => {
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/register" element={<Register />} />
             </Routes>
-          </UserProvider>\
-          </CartProvider>
+            </CartProvider>
         </ProductProvider>
       </ArticleProvider>
     </BrowserRouter>

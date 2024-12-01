@@ -1,41 +1,36 @@
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
 import api from "../api";
 
 const NewArticle = () => {
 
-  const [data, setData] = useState({
-    title: "",
-    image: "",
-    content: "",
-});
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [image,setImage] = useState("")
+  const navigate = useNavigate()
 
-console.log(data)
+
+console.log(image,title,content)
 
   const handleSubmit = (e) => {
     e.preventDefault();
     api
-      .post("api/article/", {data})
+      .post("/api/article/", {title,content})
       .then((res) => {
         if (res.status === 201) alert("โพสเนื้อหาใหม่แล้ว!");
         else alert("ไม่สามารถโพสเนื้อหาใหม่ได้");
       })
       .catch((err) => alert(err));
+      navigate('/article')
   };
 
   const handleImageChange =(e)=>{
-    let newData ={...data}
-    newData["image"] = e.target.files[0];
-    setData(newData);
+    setImage(e.target.files[0]);
   }
 
-  const handleChange =({ currentTarget: input })=>{
-    let newData ={...data};
-    newData[input.name] = input.value;
-    setData(newData);
-  }
 
 
   return (
@@ -79,13 +74,13 @@ console.log(data)
               name="title"
               placeholder="กรอกชื่่อเรื่อง"
               className="field"
-              value={data.title}
+              value={title}
               style={{
                 height: "auto",
                 textAlign: "left",
                 width: "60vw",
               }}
-              onChange={(e) => handleChange(e)}
+              onChange={(e) => setTitle(e.target.value)}
             />
           
           </Form.Group>
@@ -111,10 +106,10 @@ console.log(data)
                   width:"60vw",
                   paddingBottom: "200px",
                 }}
-                onChange={(e) => handleChange(e)
+                onChange={(e) => setContent(e.target.value)
               
                 }
-                value={data.content}
+                value={content}
               />
             </Form.Group>
           <Button variant="red" type="submit" className="primary-button">

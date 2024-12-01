@@ -3,13 +3,13 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import api from "../api";
 
-const ArticleCard = ({image, header, createdDate, summary, id }) => {
+const ArticleCard = ({image,number,header, createdDate, summary, id }) => {
 
   const formatDate = createdDate.slice(0,10)
  
   return (
       <Container className="article-card" id={id}>
-        <Link to={`/article/${id}`} className="link">
+        <Link to={`/article/${number}/`}  className="link">
         <Row className="article-inner">
           <Col lg={4}> 
             <div className="article-card-image">
