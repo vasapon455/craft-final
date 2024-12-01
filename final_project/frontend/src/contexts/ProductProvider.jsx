@@ -5,15 +5,20 @@ const ProductContext = createContext([]);
 
 const ProductProvider = ({children}) => {
     const [producteData,setProductData] = useState([]);
+
+    const getProduct = ()=>{
+      api.get("/api/shop-items/", { withCredentials: true })
+      .then((res) => setProductData(res.data))
+      .catch((error) => {
+        console.error("Error fetching the comments.", error);
+      });
+    }
+
     useEffect(() => {
-        api.get("/api/shop-items/", { withCredentials: true })
-          .then((res) => setProductData(res.data))
-          .catch((error) => {
-            console.error("Error fetching the products.", error);
-          });
-      }, [producteData]);
+       getProduct();
+      },[producteData]);
     
-   return  <ProductContext.Provider value={producteData}>{children}</ProductContext.Provider>;
+   return  <ProductContext.Provider value={[producteData,setProductData]}>{children}</ProductContext.Provider>;
   }
 
 export default ProductProvider;

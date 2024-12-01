@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         print(validated_data)
-        password = validated_data.pop('password')
+        password = validated_data.pop("password")
         user = CustomUser.objects.create_user(**validated_data)
         return user
   
@@ -18,8 +18,9 @@ class ArticleSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
     class Meta:
         model = Article
-        fields = ["id", "image","title","content","created_at","author"]
+        fields = ["id","title","content","image","created_at","author"]
         extra_kwrags = {"author":{"read_only": True}}
+        
 
 class CommentSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
@@ -30,14 +31,18 @@ class CommentSerializer(serializers.ModelSerializer):
         extra_kwrags = {"author":{"read_only": True}}
 
 class ShopItemSerializer(serializers.ModelSerializer):
+    item_name = serializers.StringRelatedField()
     class Meta:
         model = ShopItem
-        fields = ["id", "image","item_name","price","quantity"]
+        fields = ["id","category", "image","item_name","price","quantity"]
+        extra_kwrags = {"item_name":{"read_only": True}}
    
 class CartItemSerializer(serializers.ModelSerializer):
+    customer = serializers.StringRelatedField()
+    item = serializers.StringRelatedField()
     class Meta:
         model = CartItem
-        fields = ["id", "image","item_name","price","quantity","customer"]
+        fields = ["id","item","quantity","customer"]
         extra_kwrags = {"customer":{"read_only": True}}
 
 class SalesOrderSerializer(serializers.ModelSerializer):

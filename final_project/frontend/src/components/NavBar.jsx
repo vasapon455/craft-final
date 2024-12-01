@@ -11,8 +11,8 @@ import { Navigate } from "react-router-dom";
 
 const NavBar = () => {
   const [clickHamburger, setClickHamburger] = useState(false);
-
- function logout(){
+  
+ const handleLogout =()=>{
   localStorage.clear();
   setClickHamburger(false)
   location.reload();
@@ -149,7 +149,7 @@ const NavBar = () => {
                         ? "sub-heading black navbar-menu-text"
                         : "paragraph white navbar-menu-text"
                     }
-                  onClick={logout}>
+                  onClick={handleLogout}>
                     Log Out
                   </Link>
                 )}

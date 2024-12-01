@@ -3,16 +3,16 @@ import { useState } from "react";
 import api from "../api";
 
 
-const NewCommentCard = ( )=> {
+const NewCommentCard = ({articleId})=> {
   const [comment_text, setCommentText] = useState("");
 
   const createComment = (e) => {
     e.preventDefault();
     api
-      .post("api/article/comment/", {comment_text,})
+      .post("api/article/comment/", {comment_text:comment_text, commented_post:articleId})
       .then((res) => {
-        if (res.status === 201) alert("Comment created!");
-        else alert("Failed to make comment.");
+        if (res.status === 201) alert("โพสคอมเม้นแล้ว!");
+        else alert("ไม่สามารถคอมเม้นได้");
       })
       .catch((err) => alert(err));
   };

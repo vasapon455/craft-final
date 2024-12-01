@@ -6,23 +6,31 @@ const ArticleContext = createContext([]);
 const ArticleProvider = ({children}) => {
     const [articleData,setArticleData] = useState([]);
     const [commentData,setCommentData] = useState([])
+    
+    
 
-    useEffect(() => {
-        api.get("/api/article/", { withCredentials: true })
-          .then((res) => setArticleData(res.data))
-          .catch((error) => {
-            console.error("Error fetching the articles.", error);
-          });
-      }, [articleData]);
+    const getAricle = ()=>{
+      api.get("/api/article/", { withCredentials: true })
+      .then((res) => setArticleData(res.data))
+      .catch((error) => {
+        console.error("Error fetching the articles.", error);
+      },[]);
+    }
 
-      useEffect(() => {
-        api.get("/api/article/comment", { withCredentials: true })
-          .then((res) => setCommentData(res.data))
-          .catch((error) => {
-            console.error("Error fetching the comments.", error);
-          });
-      }, [commentData]);
+    const getComment = ()=>{
+      api.get("/api/article/comment/", { withCredentials: true })
+      .then((res) => setCommentData(res.data))
+      .catch((error) => {
+        console.error("Error fetching the comments.", error);
+      });
+    }
 
+    useEffect(() => {getComment()
+      },[commentData]);
+
+    useEffect(()=> {getAricle(),[articleData]}
+    )
+   
    return  <ArticleContext.Provider value={[articleData,commentData]}>{children}</ArticleContext.Provider>;
   }
 

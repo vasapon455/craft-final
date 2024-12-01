@@ -11,7 +11,7 @@
 
 {% for comment in post.post_comments.all %}
     <div class="comment" style="border: 5px solid black; margin: 20px; width: 50%"  >
-        <p>{{ comment.comment_text }}<p>
+        <p>{{ comment.commeent_text }}<p>
         <strong><p>Rating = {{ comment.user_rating }}</p></strong>
         <p><a href="{% url 'comment_edit' post.pk %}">+ Edit Comment</a></p>
         <p><a href="{% url 'comment_delete' post.pk %}">- Delete Comment</a></p>

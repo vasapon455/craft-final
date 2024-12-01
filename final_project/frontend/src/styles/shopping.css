@@ -58,15 +58,19 @@
 }
 
 .shopping-card {
-  width: auto;
+  width: 20vw;
+  height: auto;
   color: #333232;
   border: 1px solid black;
   border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .shopping-card-image{
-  height: auto;
-  width: 200px;
+  height: 30vh;
+  width: auto;
 }
 
 .shopping-name {
@@ -92,12 +96,21 @@
 }
 
 @media screen and (max-width: 770px) {
+
   .shopping-card-container {
-    display: grid;
-    grid-template-columns: auto auto;
+    margin-bottom: 89px;
+    grid-template-columns: auto auto ; 
   }
+  
   .shopping-card-image{
-    height: auto;
-    width: 100px;
+    height:auto;
+    width: 30vw;
   }
+
+  .shopping-card{
+    height: auto;
+  width: 40vw;
+  }
+
+  
 }

@@ -1,14 +1,14 @@
 import { Container, Row, Col } from "react-bootstrap";
 import "../styles/comment.css";
 import { Link } from "react-router-dom";
+import api from "../api";
 
-const CommentCard = ({ id, comment, author, commentedDate }) => {
-
-  const handleDelete = (id) =>{
-    api.delete(`api/article/comment/${id}`).then((res) => {
-      if (res.status === 204) alert("Note deleted!");
-      else alert("Failed to delete note.");
-      
+const CommentCard = ({ id, comment, author, commentedDate, comment_id }) => {
+  
+  const handleDelete = (comment_id) =>{
+    api.delete(`api/article/comment/${comment_id}`).then((res) => {
+      if (res.status === 204) alert("ลบคอมเม้นแล้ว!");
+      else alert("ไม่สามารถลบคอมเม้นได้");
   })
   .catch((error) => alert(error));
 
@@ -33,7 +33,7 @@ const CommentCard = ({ id, comment, author, commentedDate }) => {
           <Link
            className="pargraph white underline"
           >
-            <span className="paragraph white underline" onClick={handleDelete}>+ลบ</span>
+            <button className="paragraph white underline" style={{backgroundColor:"transparent",border:"none"}} onClick={()=>handleDelete(comment_id)}>+ลบ</button>
   
           </Link>
         </Col>

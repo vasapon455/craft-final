@@ -6,7 +6,7 @@ import api from "../api";
 const ArticleCard = ({image, header, createdDate, summary, id }) => {
 
   const formatDate = createdDate.slice(0,10)
-  console.log(image)
+ 
   return (
       <Container className="article-card" id={id}>
         <Link to={`/article/${id}`} className="link">

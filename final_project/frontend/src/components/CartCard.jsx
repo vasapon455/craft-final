@@ -1,27 +1,54 @@
 import "../styles/cart.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { useProducts } from "../contexts/ProductProvider";
+import { useState } from "react";
+
+const CartCard = ({price,setPrice, name, quantity }) => {
 
 
-const CartCard = ({image, name, price, quantity }) => {
+  const [productData, setProductData] = useProducts()
+  
+  const cartProduct = productData.filter((product)=>product.item_name == name)
+  
+  const [cartQuantity,setCartQuantity] = useState(quantity)
+
+  const th_price = cartProduct[0].price.toLocaleString("th-TH", {
+    style: "currency",
+    currency: "THB",
+  });
+
+  const handleChangeQuantity = (operation) =>{
+    if (operation =="minus"){
+         if (cartQuantity > 0){
+          setCartQuantity((prev)=>prev - 1)
+         }
+    } else {
+      setCartQuantity((prev)=>prev + 1)
+    }  
+    setPrice(cartProduct * cartProduct[0].price)
+  }
+  
+
+  console.log(cartProduct)
+
   return (
       <Container className="cart-card">
         <Row className="cart-inner">
           <Col lg={10}>
-            
-              <img src={image} style={{objectFit: "scale-down"}} className="cart-card-image"  /> 
-         
+      
+              <img src={cartProduct[0].image} style={{objectFit: "scale-down"}} className="cart-card-image"  /> 
           </Col>
           <Col className="cart-card-right" lg={10}>
             <h2 className="sub-heading black">{name}</h2>
-            <span className="paragraph black">{price}</span>
+            <span className="paragraph black">ราคา {th_price}</span>
             <div style={{display: 'flex', justifyContent: 'left', alignItems: 'center',gap:'100px'}}>
             <p className="paragraph black">จำนวน</p>
             <div style={{display: 'flex', justifyContent: 'left', alignItems: 'center',gap:'10px'}}>
-            <button style={{backgroundColor:"transparent",border:"none"}}>
+            <button style={{backgroundColor:"transparent",border:"none"}} onClick={()=> handleChangeQuantity('minus')}>
             <img src="/cart/minus-button.svg"/> 
             </button >
-            <p className="paragraph black">{quantity}</p>
-            <button style={{backgroundColor:"transparent",border:"none"}}>
+            <p className="paragraph black">{cartQuantity}</p>
+            <button style={{backgroundColor:"transparent",border:"none"}} onClick={()=> handleChangeQuantity('plus')}>
              <img src="/cart/plus-button.svg"/>
              </button>
              </div>

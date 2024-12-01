@@ -18,20 +18,25 @@ import ProductProvider from "./contexts/ProductProvider";
 import ForgotPassword from "./pages/ForgotPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserProvider from "./contexts/UserProvider";
+import NewArticle from "./pages/NewArticle";
+import CartProvider from "./contexts/CartProvider";
 
 const App = () => {
   return (
     <BrowserRouter>
       <ArticleProvider>
         <ProductProvider>
+          <CartProvider>
           <UserProvider>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/article" element={<Article />} />
-              <Route path="/article/:article_id" element={<ArticleDetail />} />
+              <Route path ="/article/new" element={<ProtectedRoute><NewArticle/></ProtectedRoute>} />
+              <Route path="/article/:article_id/" element={<ArticleDetail />} />
               <Route path="/shopping" element={<Shopping />} />
+              <Route path="/shopping/:item_id" element={<ItemDetail />} />
               <Route
-                path="/shopping/item-detail/:item_id"
+                path="/shopping/item-detail/:item_id/"
                 element={<ItemDetail />}
               />
               <Route path="/promotion" element={<Promotion />} />
@@ -56,7 +61,8 @@ const App = () => {
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/register" element={<Register />} />
             </Routes>
-          </UserProvider>
+          </UserProvider>\
+          </CartProvider>
         </ProductProvider>
       </ArticleProvider>
     </BrowserRouter>

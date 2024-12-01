@@ -5,6 +5,7 @@ import ArticleCard from "../components/ArticleCard";
 import { Link } from "react-router-dom";
 import { useArticles } from "../contexts/ArticleProvider";
 import NotFound from "../components/NotFound";
+import { Container } from "react-bootstrap";
 
 const Article = () => {
   const [data , comment] = useArticles();
@@ -14,17 +15,23 @@ const Article = () => {
       {data ? (
         <Section header="Article">
           <section id="article">
+            <Container style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "20px",
+              justifyContent: "center",
+              alignContent: "center",
+            }}>
             <Link
-              to="/"
+              to="/article/new"
               style={{
-                fontFamily: "Kanit",
-                color: "black",
                 textDecoration: "underline",
-                fontSize: "24px",
               }}
+              className="paragraph black"
             >
               +โพสใหม่
             </Link>
+            </Container>
             {data.length > 0 ? (
               data.map((data) => {
                 return <ArticleCard

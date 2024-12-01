@@ -15,9 +15,9 @@ const category = [
   "Lolita",
   "Angura Kei",
   "Fairy Kei",
-  "Kogai",
+  "Kogal",
   "Kimono",
-  "Gyaruno",
+  "Gyaru",
   "Mori Kei",
   "Visual Kei",
   "Sukajan",
@@ -25,13 +25,21 @@ const category = [
 
 
 const Shopping = () => {
-  const shopItem = useProducts();
-  const [filterItem,setFilterItem] = useState(shopItem)
+  const [productData,setProductData] = useProducts();
+  const [filterData, setFilterData] = useState(productData)
 
-function handleFilter(category){
-  const filterItem = filter.filter((item)=>item.category = category)
-  setFilter(filterItem)
-}
+
+  const handleFilter = (cat) => {
+    if(cat != 'All'){
+    const filtered = productData.filter((item)=> item.category == cat)
+    console.log(filtered)
+    setFilterData(filtered)
+  } else{
+    setFilterData(productData)
+   }
+  }
+
+ 
   return (
     <Layout>
       <Section header={"Shopping"}>
@@ -49,22 +57,23 @@ function handleFilter(category){
           </Link>
           <div className="filter-container">
             {category.map((cat) => (
-              <ShoppingFilter name={cat}/>
+              <ShoppingFilter name={cat} onClicked={handleFilter}  />
             ))}
           </div>
         </section>
       </Section>
       <div className="shopping-card-container">
-        {filterItem.length >0? filterItem.map((item) => (
+      {filterData.length >0?
+      filterData.map(item =>
           <ShoppingCard
             id={item.id}
             image={item.image}
-            name={item.name}
+            name={item.item_name}
             price={item.price}
-            onClick={()=>handleFilter(cat)}
+            trigger={filterData}
           />
-        ))
-        :<NotFound/>}
+        ): <NotFound/>} 
+        
       </div>
     </Layout>
   )

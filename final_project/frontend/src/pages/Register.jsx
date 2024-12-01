@@ -16,11 +16,13 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
    
     try {
       const res = await api.post("/api/user/register/", { username, password, address });
      {
+        alert("สมัครสมาชิกสำเร็จ")
         navigate("/");
       } 
       
@@ -35,7 +37,9 @@ const Register = () => {
   return (
     <Layout>
       <Section header="Register">
+      {!loading ?
         <Form className="form-container" onSubmit={handleSubmit}>
+
           <Form.Group controlId="formName" className="form-group">
             <Form.Label className="paragraph black">Name</Form.Label>
             <Form.Control
@@ -80,6 +84,9 @@ const Register = () => {
             </Link>
           </Container>
         </Form>
+        : (
+            <LoadingIndicator />
+          )}
       </Section>
     </Layout>
   );

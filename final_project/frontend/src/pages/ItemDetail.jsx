@@ -1,24 +1,55 @@
 import "../styles/shopping.css";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
+import { useProducts } from "../contexts/ProductProvider";
+import { useParams } from "react-router-dom";
+import api from "../api";
 
-const ItemDetail = () => {
+const ItemDetail = ({ id }) => {
+  const [productData, setProductData] = useProducts();
+  const { item_id } = useParams();
+
+  const data = productData.filter((product) => product.id == item_id);
+
+  const th_price = data[0].price.toLocaleString("th-TH", {
+    style: "currency",
+    currency: "THB",
+  });
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+   
+    e.preventDefault();
+    api
+      .post("/api/cart-items/", {
+        item_id,
+        quantity: 1,
+      })
+      .then((res) => {
+        if (res.status === 201) {
+          alert("เพิ่มลงในตะกร้าแล้ว!");
+          navigate("/cart");
+        } else {
+          alert("ไม่สามารถเพิ่มลงในตะกร้าได้");
+        }
+      })
+      .catch((err) => alert(err));
+  };
+
   return (
     <Layout>
       <Section header="Shopping">
-        <Link
-          to="/promotion"
-          className="paragraph black underline"
-        >
+        <Link to="/promotion" className="paragraph black underline">
           ดูโปรโมชัน
         </Link>
       </Section>
-      <img src="shopping/item-detail-example.jpeg" className="item-detail-image" />
+      <img src={data[0].image} className="item-detail-image" />
       <Container className="item-detail">
-        <h2 className="sub-heading black">Hello</h2>
-        <p className="paragraph black">200 บาท</p>
+        <h2 className="sub-heading black">{data[0].item_name}</h2>
+        <p className="paragraph black">ราคา {th_price}</p>
         <p className="paragraph black">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed
           libero consectetur, consequat ligula a, iaculis enim. Etiam dictum
@@ -43,11 +74,14 @@ const ItemDetail = () => {
             marginTop: "40px",
           }}
         >
-          <Link to="/cart">
-            <Button variant="r ed" type="submit" className="primary-button">
-              <p className="paragraph white">เพิ่มลงในตะกร้า</p>
-            </Button>
-          </Link>
+          <Button
+            variant="red"
+            type="submit"
+            className="primary-button"
+            onClick={handleSubmit}
+          >
+            <p className="paragraph white">เพิ่มลงในตะกร้า</p>
+          </Button>
         </Container>
       </Container>
     </Layout>

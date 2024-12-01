@@ -1,12 +1,12 @@
 from django.urls import path
-from .views import ArticleData,ShopItemData,CartItemData,SalesOrderData,ArticleDelete,ArticleCreate,CommentListCreate,CommentDelete
+from .views import ArticleListCreate,ShopItemData,CartItemListCreate,SalesOrderData,ArticleDetailDelete,CommentListCreate,CommentDetailDelete,ShopItemDetailDelete
 urlpatterns = [
-    path("article/", ArticleData.as_view(), name="article_data"),
-    path("article/new", ArticleCreate.as_view(),name="article_new"),
-    path("article/delete/<int:pk>/", ArticleDelete.as_view(), name="article_delete"),
+    path("article/", ArticleListCreate.as_view(), name="article_data"),
+    path("article/<int:pk>/", ArticleDetailDelete.as_view(), name="article_delete"),
     path("article/comment/", CommentListCreate.as_view(), name="comment_data"),
-     path("article/comment/delete/<int:pk>", CommentDelete.as_view(), name="comment_delete"),
+    path("article/comment/<int:pk>", CommentDetailDelete.as_view(), name="comment_detail"),
     path("shop-items/", ShopItemData.as_view(), name="shop_item_data"),
-    path("cart-items/", CartItemData.as_view(), name="cart_item_data"),
-    path("sales-order/", SalesOrderData.as_view(), name="sales_order")
+    path("shop-items/<int:pk>", ShopItemDetailDelete.as_view(), name="shop_item_data"),
+    path("cart-items/", CartItemListCreate.as_view(), name="cart_item_data"),
+    path("order/", SalesOrderData.as_view(), name="sales_order")
 ]
