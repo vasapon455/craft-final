@@ -20,6 +20,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserProvider from "./contexts/UserProvider";
 import NewArticle from "./pages/NewArticle";
 import CartProvider from "./contexts/CartProvider";
+import EditArticle from "./pages/EditArticle";
 
 const App = () => {
   return (
@@ -33,8 +34,9 @@ const App = () => {
               <Route path="/article" element={<Article />} />
               <Route path ="/article/new" element={<ProtectedRoute><NewArticle/></ProtectedRoute>} />
               <Route path="/article/:article_id/" element={<ArticleDetail />} />
+              <Route path="/article/edit/:article_id/" element={<EditArticle />} />
               <Route path="/shopping" element={<Shopping />} />
-              <Route path="/shopping/:item_id" element={<ItemDetail />} />
+              <Route path="/shopping/:item_id/" element={<ItemDetail />} />
               <Route
                 path="/shopping/item-detail/:item_id/"
                 element={<ItemDetail />}

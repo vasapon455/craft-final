@@ -38,7 +38,13 @@ class ArticleListCreate (generics.ListCreateAPIView):
             serializer.save(author=self.request.user)
         else:
             print(serializer.errors)
-        
+
+class ArticleUpdate (generics.UpdateAPIView):
+      queryset = Article.objects.all()
+      serializer_class = ArticleSerializer
+      permission_classes = [IsAuthenticated]
+
+
 class CommentListCreate(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer

@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import ArticleListCreate,ShopItemData,CartItemListCreate,SalesOrderData,ArticleDetailDelete,CommentUpdate,CommentListCreate,CommentDetailDelete,ShopItemDetailDelete
+from .views import ArticleListCreate,ShopItemData,CartItemListCreate,SalesOrderData,ArticleDetailDelete,ArticleUpdate,CommentUpdate,CommentListCreate,CommentDetailDelete,ShopItemDetailDelete
 urlpatterns = [
     path("article/", ArticleListCreate.as_view(), name="article_data"),
     path("article/<int:pk>/", ArticleDetailDelete.as_view(), name="article_delete"),
+    path("article/<int:pk>/update", ArticleUpdate.as_view(), name="article_update"),
     path("article/comment/", CommentListCreate.as_view(), name="comment_data"),
     path("article/comment/<int:pk>/", CommentDetailDelete.as_view(), name="comment_detail"),
     path("article/comment/<int:pk>/update/", CommentUpdate.as_view(), name="comment_update"),

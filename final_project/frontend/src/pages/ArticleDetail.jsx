@@ -1,11 +1,8 @@
-import React from "react";
-
+import React, { useState } from "react";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
-
 import CommentCard from "../components/CommentCard";
 import NotFound from "../components/NotFound";
-
 import { useParams, Link,useNavigate } from "react-router-dom";
 import { Container, Form, Button } from "react-bootstrap";
 import { useArticles } from "../contexts/ArticleProvider";
@@ -18,9 +15,9 @@ const ArticleDetail = () => {
   const { article_id } = useParams();
   const item = articles[article_id-1];
   const navigate = useNavigate()
-  
-  
-204
+  const [newtitle,setNewTitle] = useState(item.title)
+  const [newcontent,setNewContent] = useState(item.content)
+  const [edit,setEdit] = useState(false)
 
 
   const this_comment = comments.filter(
@@ -39,9 +36,12 @@ const ArticleDetail = () => {
       else alert("ไม่สามารถลบบทความได้");
   })
   .catch((error) => alert(error));
-  
   }
-
+  
+  
+  const formData = new FormData();
+  formData.append("title", newtitle);
+  formData.append("title", newcontent);
   return (
     <Layout>
       {item ? (
@@ -56,11 +56,11 @@ const ArticleDetail = () => {
             }}
           >
             <Link
-              to="/"
               style={{
                 textDecoration: "underline",
               }}
               className="paragraph black"
+              to={`/article/edit/${article_id}`}
             >
               +แก้ไข
             </Link>
