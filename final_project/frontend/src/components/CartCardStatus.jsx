@@ -23,7 +23,6 @@ const CartCardStatus = ({ image, name, price, quantity, status }) => {
             <div
               style={{
                 position: "absolute",
-                width: "auto",
                 backgroundColor: status === 'กำลังจัดส่ง' ? 'yellow' : status == 'ยกเลิก' ? 'grey':status == 'จัดส่งไม่สำเร็จ' ?'red':'green',
                 bottom: "20px",
                 left: "0px",
