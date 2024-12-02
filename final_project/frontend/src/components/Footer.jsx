@@ -10,6 +10,8 @@ const Footer = () => {
     const InstagramLink = "https://www.instagram.com/"
     const xLink = "https://x.com/?lang=th"
     const tikTokLink = "https://www.tiktok.com/explore"
+    const address = "455/263 ถนนจรัญสนิทวงศ์ ซอย 35 แขวงบางขุนศรี เขตบางกอกน้อย กรุงเทพฯ 10700"
+    const name = "Vasapon Opaswatanakul"
     const year = new Date()
     const thisYear = year.getFullYear()
 
@@ -37,9 +39,9 @@ const Footer = () => {
                 </div>
                 </Col> 
                 <Col Col lg={6} className="footer-right">
-                  <p className="sub-heading white">Vasapon Opaswatanakul</p>
+                  <p className="sub-heading white">{name}</p>
                   <span className="paragraph white underline">Address</span>
-                  <div className="paragraph white"><p>455/263 ถนนจรัญสนิทวงศ์ ซอย 35 แขวงบางขุนศรี เขตบางกอกน้อย กรุงเทพฯ 10700</p></div>
+                  <div className="paragraph white"><p>{address}</p></div>
                 </Col>
             </Row>
             <Row style={{textAlign: 'center', display:'flex', flexDirection:'column', gap:'20px'}}>

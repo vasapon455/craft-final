@@ -28,13 +28,26 @@ const App = () => {
       <ArticleProvider>
         <ProductProvider>
           <CartProvider>
-   
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route path="/article" element={<Article />} />
-              <Route path ="/article/new" element={<ProtectedRoute><NewArticle/></ProtectedRoute>} />
+              <Route
+                path="/article/new"
+                element={
+                  <ProtectedRoute>
+                    <NewArticle />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/article/:article_id/" element={<ArticleDetail />} />
-              <Route path="/article/edit/:article_id/" element={<ProtectedRoute><EditArticle /></ProtectedRoute>} />
+              <Route
+                path="/article/edit/:article_id/"
+                element={
+                  <ProtectedRoute>
+                    <EditArticle />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/shopping" element={<Shopping />} />
               <Route path="/shopping/:item_id/" element={<ItemDetail />} />
               <Route
@@ -45,9 +58,9 @@ const App = () => {
               <Route
                 path="/order-tracking"
                 element={
-                  
+                  <ProtectedRoute>
                     <OrderTracking />
-                
+                  </ProtectedRoute>
                 }
               />
               <Route path="/contact-us" element={<ContactUs />} />
@@ -63,7 +76,7 @@ const App = () => {
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/register" element={<Register />} />
             </Routes>
-            </CartProvider>
+          </CartProvider>
         </ProductProvider>
       </ArticleProvider>
     </BrowserRouter>

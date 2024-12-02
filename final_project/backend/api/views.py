@@ -95,7 +95,7 @@ class CartItemListCreate (generics.ListCreateAPIView):
         serializer.save(customer=self.request.user)
         return Response({"message": "Cart Item Added"}, status=status.HTTP_201_CREATED)
 
-class SalesOrderData (generics.ListCreateAPIView):
+class SalesOrderListCreate (generics.ListCreateAPIView):
     queryset = SalesOrder.objects.all()
     serializer_class = SalesOrderSerializer
     permission_classes = [AllowAny]
