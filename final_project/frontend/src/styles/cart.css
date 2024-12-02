@@ -22,7 +22,7 @@
   .cart-card-image {
     width: 350px;
     height: 220px;
-    background-color: black;
+    background-color: transparent;
     border-radius: 6px;
   }
   
@@ -47,6 +47,10 @@
         margin-bottom: 70px;
     }
 
+    .status{
+
+    }
+
     @media screen and (max-width: 740px) {
         .cart-card {
           padding: 20px;
@@ -57,11 +61,11 @@
         }
       
         .cart-card-image {
-          width: 175px;
-          height: 220px;
-          background-color: black;
+          width: auto;
+          
           border-radius: 6px;
         }
+
         .cart-inner {
           flex-direction: column;
           justify-content: center;

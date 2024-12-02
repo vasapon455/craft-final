@@ -1,7 +1,14 @@
 import "../styles/cart.css";
 import { Container, Row, Col } from "react-bootstrap";
+import { useState } from "react";
 
 const CartCardStatus = ({ image, name, price, quantity, status }) => {
+
+  const [checkStatus,setCheckStatus] = useState("")
+
+
+
+
   return (
     <Container className="cart-card">
       <Row className="cart-inner">
@@ -17,16 +24,21 @@ const CartCardStatus = ({ image, name, price, quantity, status }) => {
               style={{
                 position: "absolute",
                 width: "auto",
-                backgroundColor: "yellow",
+                backgroundColor: status === 'กำลังจัดส่ง' ? 'yellow' : status == 'ยกเลิก' ? 'grey':status == 'จัดส่งไม่สำเร็จ' ?'red':'green',
                 bottom: "20px",
-                left: "120px",
+                left: "0px",
+                right: "0px",
                 borderRadius: "20px",
-                padding: "5px",
-                paddingLeft:"10px",
-                paddingRight:"10px"
+                paddingLeft: "10px",
+                paddingRight: "10px",
+                paddingTop: "5px",
+                paddingBottom:"5px",
+                marginInline: "auto", 
+                width: "fit-content",
+                textAlign:"center"
               }}
             >
-              <p className="paragraph black">{status}</p>
+              <p className={status == 'กำลังจัดส่ง' ? "caption black": "caption white"}>{status}</p>
             </div>
           </div>
         </Col>
