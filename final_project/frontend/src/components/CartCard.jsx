@@ -3,10 +3,11 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { useProducts } from "../contexts/ProductProvider";
 import { useState } from "react";
 import api from "../api";
+import { useNavigate } from "react-router-dom";
 
 const CartCard = ({ id, price, setPrice, name, quantity, buy,setBuy }) => {
   const [productData, setProductData] = useProducts();
-
+  const usenavigate = useNavigate()
   const cartProduct = productData.filter(
     (product) => product.item_name == name
   );
@@ -52,7 +53,7 @@ const CartCard = ({ id, price, setPrice, name, quantity, buy,setBuy }) => {
           alert("ไม่สามารถสั่งซื้อได้");
         }
       })
-      .catch((err) => {alert(err);});
+      .catch((err) => {alert(err);});   
   };
 
   buy ? handleBuy() : null;

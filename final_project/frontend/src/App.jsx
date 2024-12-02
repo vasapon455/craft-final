@@ -1,7 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import Article from "./pages/Article";
 import ArticleDetail from "./pages/ArticleDetail";
@@ -17,10 +16,10 @@ import ArticleProvider from "./contexts/ArticleProvider";
 import ProductProvider from "./contexts/ProductProvider";
 import ForgotPassword from "./pages/ForgotPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
-import UserProvider from "./contexts/UserProvider";
 import NewArticle from "./pages/NewArticle";
 import CartProvider from "./contexts/CartProvider";
 import EditArticle from "./pages/EditArticle";
+import CheckOut from "./pages/CheckOut";
 
 const App = () => {
   return (
@@ -55,6 +54,7 @@ const App = () => {
                 element={<ItemDetail />}
               />
               <Route path="/promotion" element={<Promotion />} />
+              <Route path="/check-out" element={<CheckOut/>}/>
               <Route
                 path="/order-tracking"
                 element={
