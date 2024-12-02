@@ -15,7 +15,6 @@ const Footer = () => {
     const year = new Date()
     const thisYear = year.getFullYear()
 
-
     return (
         <footer>
             <Container fluid className="footer-container">
@@ -45,7 +44,7 @@ const Footer = () => {
                 </Col>
             </Row>
             <Row style={{textAlign: 'center', display:'flex', flexDirection:'column', gap:'20px'}}>
-                <a className="paragraph white underline" href="#top">Return to Top</a>
+                <a className="paragraph white underline navbar-menu-text" href="#top">Return to Top</a>
                 <p className="paragraph white">Copyright © {thisYear} Japan Style Alrights Reserved.</p>
             </Row>
             </Container>
