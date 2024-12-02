@@ -30,7 +30,7 @@ const Article = () => {
               }}
               className="paragraph black"
             >
-              +โพสใหม่s
+              +โพสใหม่
             </Link>
             </Container>
             {data.length > 0 ? (
