@@ -11,12 +11,11 @@ const Login = () => {
 const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const submit = async (e) => {
+  
    
 const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-    
     try {
     const res = await api.post("/api/token/", { username, password });
       localStorage.setItem(ACCESS_TOKEN, res.data.access);
@@ -76,6 +75,7 @@ const handleSubmit = async (e) => {
     </Layout>
   );
 };
+
 
 
 export default Login;
