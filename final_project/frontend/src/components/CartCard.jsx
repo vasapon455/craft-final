@@ -41,10 +41,10 @@ const CartCard = ({ id, price, setPrice, name, quantity, buy,setBuy }) => {
   formData.append('item',id)
   formData.append('quantity',cartQuantity)
 
-  const handleBuy = () => {
+  const handleBuy = (id) => {
     setBuy(false);
     api
-      .post("/api/order/", formData)
+      .post("/api/order/", {'item':id})
       .then((res) => {
         if (res.status === 201) {
           alert("สั่งซื้อสำเร็จ");
@@ -56,7 +56,7 @@ const CartCard = ({ id, price, setPrice, name, quantity, buy,setBuy }) => {
       .catch((err) => {alert(err);});   
   };
 
-  buy ? handleBuy() : null;
+  buy ? handleBuy(id) : null;
 
   return (
     <Container className="cart-card">

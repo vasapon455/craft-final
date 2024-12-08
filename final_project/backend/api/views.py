@@ -18,7 +18,6 @@ class ArticleDetailDelete(generics.RetrieveDestroyAPIView):
     serializer_class = ArticleSerializer
     permission_classes = [IsAuthenticated]
     
-
     def get_queryset(self):
         user = self.request.user
         return Article.objects.filter(author=user)
@@ -27,7 +26,7 @@ class ArticleDetailDelete(generics.RetrieveDestroyAPIView):
 class ArticleListCreate (generics.ListCreateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         user = self.request.user
@@ -91,7 +90,6 @@ class CartItemListCreate (generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        item = self.request.data.get('customer')
         serializer.save(customer=self.request.user)
         return Response({"message": "Cart Item Added"}, status=status.HTTP_201_CREATED)
 
