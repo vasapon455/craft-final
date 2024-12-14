@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import { useProducts } from "../contexts/ProductProvider";
 import { useParams } from "react-router-dom";
+import { useCart } from "../contexts/CartProvider";
 import api from "../api";
 
 const ItemDetail = ({ id }) => {
@@ -20,14 +21,15 @@ const ItemDetail = ({ id }) => {
 
   const navigate = useNavigate();
 
+  const formData = new FormData()
+  formData.append('item',item_id)
+  formData.append('quantity',1)
+
+
   const handleSubmit = async (e) => {
-   
     e.preventDefault();
     api
-      .post("/api/cart-items/", {
-        item_id,
-        quantity: 1,
-      })
+      .post("/api/cart-items/", formData)
       .then((res) => {
         if (res.status === 201) {
           alert("เพิ่มลงในตะกร้าแล้ว!");

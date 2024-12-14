@@ -5,41 +5,63 @@ import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 
-const CartCard = ({ id, price, setPrice, name, quantity, buy,setBuy }) => {
-  const [productData, setProductData] = useProducts();
-  const usenavigate = useNavigate()
-  const cartProduct = productData.filter(
-    (product) => product.item_name == name
-  );
+const CartCard = ({ id, price, setPrice, name, quantity,buy,setBuy }) => {
+const [productData, setProductData] = useProducts();
+  
+const cartProduct = productData.filter((product)=> product.id === name)
 
-  const [cartQuantity, setCartQuantity] = useState(quantity);
+const [cartQuantity, setCartQuantity] = useState(quantity);
 
-  const th_price = cartProduct[0].price.toLocaleString("th-TH", {
-    style: "currency",
-    currency: "THB",
-  });
 
-  const itemPrice = cartProduct[0].price;
+const itemPrice = cartProduct[0].price;
 
-  const handleChangeQuantity = (operation) => {
+const th_price = itemPrice.toLocaleString("th-TH", {
+  style: "currency",
+  currency: "THB",
+});
+
+const formData = new FormData()
+formData.append('item',id)
+formData.append('quantity',cartQuantity)
+
+  const handleDelete = (id) =>{
+    api.delete(`/api/cart-items/${id}`).then((res) => {
+      if (res.status === 204) {
+        alert("เอาออกจากตระกร้่าแล้ว!");
+      }
+      else alert("ไม่สามารถเอาออกจากตระกร้าได้");
+  })
+  .catch((error) => alert(error));
+  }
+
+
+  const handleChange = (id)=>{
+    api
+    .patch(`/api/cart-items/${id}/update`,update, formData, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        alert("อัพเดทแล้ว");
+      } else alert("ยังไม่อัพเดท");
+    })
+    .catch((error) => alert(error));
+  }
+
+  const handleChangeQuantity = (operation,id) => {
     if (operation == "minus") {
-      if (cartQuantity > 0) {
-        setCartQuantity((prev) => prev - 1);
-        setPrice((prev) => itemPrice * cartQuantity - prev);
+      if (cartQuantity > 1) {
+        setCartQuantity((prev) => prev - 1)
+        handleChange(id)
+      } else {
+           handleDelete(id)
       }
     }
-    if (operation == "plus") {
-      setCartQuantity((prev) => prev + 1);
-      setPrice((prev) => itemPrice * cartQuantity + prev);
+    if (operation === "plus") {
+      setCartQuantity((prev) => prev + 1)
+      handleChange(id)
     }
   };
-
-  console.log(name)
-
-
-  const formData = new FormData()
-  formData.append('item',id)
-  formData.append('quantity',cartQuantity)
 
   const handleBuy = (id) => {
     setBuy(false);
@@ -57,7 +79,7 @@ const CartCard = ({ id, price, setPrice, name, quantity, buy,setBuy }) => {
   };
 
   buy ? handleBuy(id) : null;
-
+  
   return (
     <Container className="cart-card">
       <Row className="cart-inner">
@@ -69,7 +91,7 @@ const CartCard = ({ id, price, setPrice, name, quantity, buy,setBuy }) => {
           />
         </Col>
         <Col className="cart-card-right" lg={10}>
-          <h2 className="sub-heading black">{name}</h2>
+          <h2 className="sub-heading black">{cartProduct[0].item_name}</h2>
           <span className="paragraph black">ราคา {th_price}</span>
           <div
             style={{
@@ -90,7 +112,7 @@ const CartCard = ({ id, price, setPrice, name, quantity, buy,setBuy }) => {
             >
               <button
                 style={{ backgroundColor: "transparent", border: "none" }}
-                onClick={() => handleChangeQuantity("minus")}
+                onClick={() => handleChangeQuantity("minus",id)}
               >
                 <img src="/cart/minus-button.svg" />
               </button>

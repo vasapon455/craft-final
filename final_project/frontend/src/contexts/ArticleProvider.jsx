@@ -27,11 +27,11 @@ const ArticleProvider = ({ children }) => {
 
   useEffect(() => {
     getComment();
-  }, []);
+  }, [commentData]);
 
   useEffect(() => {
     getAricle();
-  }, []);
+  }, [articleData]);
 
   return (
     <ArticleContext.Provider value={[articleData, commentData]}>

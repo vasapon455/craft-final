@@ -6,6 +6,7 @@ import { Button, Row, Col } from "react-bootstrap";
 import { useCart } from "../contexts/CartProvider";
 import { useState } from "react";
 import { useProducts } from "../contexts/ProductProvider";
+import NotFound from "../components/NotFound";
 
 const Cart = () => {
   const [cartData,setCarttData] = useCart()
@@ -22,7 +23,8 @@ const Cart = () => {
     <Layout>
       <Section header="Cart">
         <section id="cart">
-          {cartData.map((data) => (
+          {cartData.length>0?
+          cartData.map((data) => (
             <CartCard
               id={data.id}
               image={data.image}
@@ -33,8 +35,8 @@ const Cart = () => {
               buy = {buy}
               setBuy = {setBuy}
             />
-          ))}
-          
+          )): <NotFound />
+        }
         </section>
         <div style={{marginBottom:"130px",marginTop:"50px"}}>
           <div className="price-group">

@@ -35,15 +35,15 @@ class ShopItemSerializer(serializers.ModelSerializer):
         model = ShopItem
         fields = ["id","category", "image","item_name","price","quantity"]
         extra_kwrags = {"item_name":{"read_only": True}}
+
    
 class CartItemSerializer(serializers.ModelSerializer):
     customer = serializers.StringRelatedField()
-    item = serializers.StringRelatedField()
     class Meta:
         model = CartItem
         fields = ["id","item","quantity","customer"]
         extra_kwrags = {"customer":{"read_only": True}}
-
+    
 class SalesOrderSerializer(serializers.ModelSerializer):
     customer = serializers.StringRelatedField()
     class Meta: 

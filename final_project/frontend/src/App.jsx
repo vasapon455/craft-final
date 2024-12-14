@@ -48,7 +48,7 @@ const App = () => {
                 }
               />
               <Route path="/shopping" element={<Shopping />} />
-              <Route path="/shopping/:item_id/" element={<ItemDetail />} />
+              <Route path="/shopping/:item_id/" element={ <ProtectedRoute><ItemDetail /></ProtectedRoute>} />
               <Route
                 path="/shopping/item-detail/:item_id/"
                 element={<ItemDetail />}

@@ -14,9 +14,9 @@ const CartProvider = ({children}) => {
       });
     }
 
-    useEffect(() => {
-       getCart();
-      },[]);
+    useEffect(() => 
+       getCart()
+      ,[cartData]);
     
    return  <CartContext.Provider value={[cartData,setCartData]}>{children}</CartContext.Provider>;
   }

@@ -15,10 +15,16 @@ const NewArticle = () => {
 
 console.log(image,title,content)
 
+const formData = new FormData()
+formData.append('title',title)
+formData.append('content',content)
+formData.append('image',image)
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     api
-      .post("/api/article/", {title,content})
+      .post("/api/article/", formData)
       .then((res) => {
         if (res.status === 201) alert("โพสเนื้อหาใหม่แล้ว!");
         else alert("ไม่สามารถโพสเนื้อหาใหม่ได้");
@@ -30,7 +36,6 @@ console.log(image,title,content)
   const handleImageChange =(e)=>{
     setImage(e.target.files[0]);
   }
-
 
 
   return (

@@ -10,14 +10,13 @@ from .serializers import UserSerializer,ArticleSerializer,ShopItemSerializer,Car
 class CreateUserView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [AllowAny]
+ 
 
 
 class ArticleDetailDelete(generics.RetrieveDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    permission_classes = [IsAuthenticated]
-    
+
     def get_queryset(self):
         user = self.request.user
         return Article.objects.filter(author=user)
@@ -27,10 +26,6 @@ class ArticleListCreate (generics.ListCreateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = [AllowAny]
-
-    def get_queryset(self):
-        user = self.request.user
-        return Article.objects.filter(author=user)
 
     def perform_create(self, serializer):
         if serializer.is_valid():
@@ -47,11 +42,7 @@ class ArticleUpdate (generics.UpdateAPIView):
 class CommentListCreate(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        user = self.request.user
-        return Comment.objects.filter(author=user)
+    permission_classes = [AllowAny]
     
     def perform_create(self, serializer):
         commented_post_id = self.request.data.get('commented_post')
@@ -61,7 +52,7 @@ class CommentListCreate(generics.ListCreateAPIView):
 class CommentDetailDelete(generics.RetrieveDestroyAPIView):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         user = self.request.user
@@ -78,7 +69,6 @@ class ShopItemData (generics.ListAPIView):
     serializer_class = ShopItemSerializer
     permission_classes = [AllowAny]
 
-
 class ShopItemDetailDelete (generics.RetrieveDestroyAPIView):
     queryset = ShopItem.objects.all()
     serializer_class = ShopItemSerializer
@@ -87,11 +77,29 @@ class ShopItemDetailDelete (generics.RetrieveDestroyAPIView):
 class CartItemListCreate (generics.ListCreateAPIView):
     queryset = CartItem.objects.all()
     serializer_class = CartItemSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def perform_create(self, serializer):
-        serializer.save(customer=self.request.user)
+        user = self.request.user
+        item = self.request.data.get("item")
+        serializer.save(customer=user)
         return Response({"message": "Cart Item Added"}, status=status.HTTP_201_CREATED)
+    
+    def get_queryset(self):
+        user = self.request.user
+        return CartItem.objects.filter(customer=user)
+
+
+class CartItemUpdate(generics.UpdateAPIView):
+      queryset = Comment.objects.all()
+      serializer_class = CartItemSerializer
+      permission_classes = [IsAuthenticated]
+
+class CartItemDelete (generics.DestroyAPIView):
+    queryset = CartItem.objects.all()
+    serializer_class = CartItemSerializer
+    permission_classes = [IsAuthenticated]
+
 
 class SalesOrderListCreate (generics.ListCreateAPIView):
     queryset = SalesOrder.objects.all()

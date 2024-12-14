@@ -10,7 +10,7 @@ const ProductProvider = ({children}) => {
       api.get("/api/shop-items/", { withCredentials: true })
       .then((res) => setProductData(res.data))
       .catch((error) => {
-        console.error("Error fetching the comments.", error);
+        console.error("Error fetching the products.", error);
       });
     }
 
