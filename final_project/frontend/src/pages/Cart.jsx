@@ -15,7 +15,7 @@ const Cart = () => {
   const [productData, setProductData] = useProducts();
   const [buy,setBuy] = useState(false) 
   const allPrice = []
-  console.log(productData)
+
   return (
     <Layout>
       <Section header="Cart">
@@ -34,6 +34,7 @@ const Cart = () => {
             />
           )): <NotFound />
         }
+      
         </section>
         <div style={{marginBottom:"130px",marginTop:"50px"}}>
           <div className="price-group">

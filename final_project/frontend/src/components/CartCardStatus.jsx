@@ -5,7 +5,14 @@ import { useProducts } from "../contexts/ProductProvider";
 const CartCardStatus = ({ image, name, price, quantity, status }) => {
 
   const [productData,setProductData] = useProducts()
-  const productImage = productData.filter((product)=> product.item_name == name)
+  const product = productData.filter((product)=> product.id == name)
+  console.log(name)
+
+  const th_price = product[0].price.toLocaleString("th-TH", {
+    style: "currency",
+    currency: "THB",
+  });
+
 
   return (
     <Container className="cart-card">
@@ -13,7 +20,7 @@ const CartCardStatus = ({ image, name, price, quantity, status }) => {
         <Col lg={10}>
           <div className="cart-card-image">
             <img
-              src={productImage[0].image}
+              src={product[0].image}
               style={{ objectFit: "scale-down" }}
               width={"350px"}
               height={"220px"}
@@ -40,8 +47,8 @@ const CartCardStatus = ({ image, name, price, quantity, status }) => {
           </div>
         </Col>
         <Col className="cart-card-right" lg={10}>
-          <h2 className="sub-heading black">{name}</h2>
-          <span className="paragraph black">{price}</span>
+          <h2 className="sub-heading black">{product[0].item_name}</h2>
+          <span className="paragraph black">{th_price}</span>
           <div
             style={{
               display: "flex",

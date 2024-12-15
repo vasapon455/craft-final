@@ -46,7 +46,6 @@ class CartItemSerializer(serializers.ModelSerializer):
     
 class SalesOrderSerializer(serializers.ModelSerializer):
     customer = serializers.StringRelatedField()
-    item = serializers.StringRelatedField()
     class Meta: 
         model = SalesOrder
         fields = ["id","item","quantity","customer","status"]

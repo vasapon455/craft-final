@@ -20,9 +20,13 @@ const CartCard = ({ id, price, setPrice, name, quantity, buy, setBuy }) => {
     currency: "THB",
   });
 
+console.log(name)
+
+
   let formData = new FormData();
-  formData.append("item", cartProduct[0].item_name);
+  formData.append("item", name);
   formData.append("quantity", cartQuantity);
+
 
   const handleDelete = (id) => {
     api
