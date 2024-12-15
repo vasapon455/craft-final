@@ -20,6 +20,7 @@ import NewArticle from "./pages/NewArticle";
 import CartProvider from "./contexts/CartProvider";
 import EditArticle from "./pages/EditArticle";
 import CheckOut from "./pages/CheckOut";
+import SalesOrderProvider from "./contexts/SalesOrderProvider";
 
 const App = () => {
   return (
@@ -27,55 +28,67 @@ const App = () => {
       <ArticleProvider>
         <ProductProvider>
           <CartProvider>
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route path="/article" element={<Article />} />
-              <Route
-                path="/article/new"
-                element={
-                  <ProtectedRoute>
-                    <NewArticle />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/article/:article_id/" element={<ArticleDetail />} />
-              <Route
-                path="/article/edit/:article_id/"
-                element={
-                  <ProtectedRoute>
-                    <EditArticle />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/shopping" element={<Shopping />} />
-              <Route path="/shopping/:item_id/" element={ <ProtectedRoute><ItemDetail /></ProtectedRoute>} />
-              <Route
-                path="/shopping/item-detail/:item_id/"
-                element={<ItemDetail />}
-              />
-              <Route path="/promotion" element={<Promotion />} />
-              <Route path="/check-out" element={<CheckOut/>}/>
-              <Route
-                path="/order-tracking"
-                element={
-                  <ProtectedRoute>
-                    <OrderTracking />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/contact-us" element={<ContactUs />} />
-              <Route
-                path="/cart"
-                element={
-                  <ProtectedRoute>
-                    <Cart />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/login" element={<Login />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/register" element={<Register />} />
-            </Routes>
+            <SalesOrderProvider>
+              <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/article" element={<Article />} />
+                <Route
+                  path="/article/new"
+                  element={
+                    <ProtectedRoute>
+                      <NewArticle />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/article/:article_id/"
+                  element={<ArticleDetail />}
+                />
+                <Route
+                  path="/article/edit/:article_id/"
+                  element={
+                    <ProtectedRoute>
+                      <EditArticle />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/shopping" element={<Shopping />} />
+                <Route
+                  path="/shopping/:item_id/"
+                  element={
+                    <ProtectedRoute>
+                      <ItemDetail />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/shopping/item-detail/:item_id/"
+                  element={<ItemDetail />}
+                />
+                <Route path="/promotion" element={<Promotion />} />
+                <Route path="/check-out" element={<CheckOut />} />
+                <Route
+                  path="/order-tracking"
+                  element={
+                    <ProtectedRoute>
+                      <OrderTracking />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/contact-us" element={<ContactUs />} />
+                <Route
+                  path="/cart"
+                  element={
+                    <ProtectedRoute>
+                      <Cart />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/login" element={<Login />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/register" element={<Register />} />
+              </Routes>
+            </SalesOrderProvider>
           </CartProvider>
         </ProductProvider>
       </ArticleProvider>

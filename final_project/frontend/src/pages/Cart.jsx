@@ -9,16 +9,13 @@ import { useProducts } from "../contexts/ProductProvider";
 import NotFound from "../components/NotFound";
 
 const Cart = () => {
-  const [cartData,setCarttData] = useCart()
- 
-
-  console.log(cartData)
-
-
+  const [cartData,setCartData] = useCart()
   const [totalPrice,setTotalPrice] = useState(0) 
-
+  const [cartPrice,setCartPrice] = useState(false)
+  const [productData, setProductData] = useProducts();
   const [buy,setBuy] = useState(false) 
- 
+  const allPrice = []
+  console.log(productData)
   return (
     <Layout>
       <Section header="Cart">

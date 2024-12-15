@@ -11,8 +11,6 @@ class CreateUserView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
  
-
-
 class ArticleDetailDelete(generics.RetrieveDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
@@ -20,7 +18,6 @@ class ArticleDetailDelete(generics.RetrieveDestroyAPIView):
     def get_queryset(self):
         user = self.request.user
         return Article.objects.filter(author=user)
-
 
 class ArticleListCreate (generics.ListCreateAPIView):
     queryset = Article.objects.all()
@@ -104,7 +101,7 @@ class CartItemDelete (generics.DestroyAPIView):
 class SalesOrderListCreate (generics.ListCreateAPIView):
     queryset = SalesOrder.objects.all()
     serializer_class = SalesOrderSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user

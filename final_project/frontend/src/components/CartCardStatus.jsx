@@ -1,13 +1,11 @@
 import "../styles/cart.css";
 import { Container, Row, Col } from "react-bootstrap";
-import { useState } from "react";
+import { useProducts } from "../contexts/ProductProvider";
 
 const CartCardStatus = ({ image, name, price, quantity, status }) => {
 
-  const [checkStatus,setCheckStatus] = useState("")
-
-
-
+  const [productData,setProductData] = useProducts()
+  const productImage = productData.filter((product)=> product.item_name == name)
 
   return (
     <Container className="cart-card">
@@ -15,7 +13,7 @@ const CartCardStatus = ({ image, name, price, quantity, status }) => {
         <Col lg={10}>
           <div className="cart-card-image">
             <img
-              src={image}
+              src={productImage[0].image}
               style={{ objectFit: "scale-down" }}
               width={"350px"}
               height={"220px"}

@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import { useProducts } from "../contexts/ProductProvider";
 import { useParams } from "react-router-dom";
-import { useCart } from "../contexts/CartProvider";
 import api from "../api";
 
 const ItemDetail = ({ id }) => {

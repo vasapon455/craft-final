@@ -1,10 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 
 # Create your models here.
 class CustomUser(AbstractUser):
     id = models.AutoField(primary_key=True)
     address = models.CharField(max_length=1000)
+    objects = UserManager()
 
 class Article(models.Model):
     id = models.AutoField(primary_key=True)
@@ -64,8 +65,9 @@ class CartItem(models.Model):
 class SalesOrder(models.Model):
     id = models.AutoField(primary_key=True)
     item = models.ForeignKey(ShopItem, on_delete=models.CASCADE, related_name="buy_item_name")
-    quantity = models.IntegerField(default=0)
+    quantity = models.IntegerField()
     customer =  models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="customer_order")
+    status = models.CharField(max_length=50, default="กำลังเตรียมสินค้า")
 
     def __str__(self):
         return self.item.__str__()

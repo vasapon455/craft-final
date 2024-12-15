@@ -46,12 +46,8 @@ class CartItemSerializer(serializers.ModelSerializer):
     
 class SalesOrderSerializer(serializers.ModelSerializer):
     customer = serializers.StringRelatedField()
+    item = serializers.StringRelatedField()
     class Meta: 
         model = SalesOrder
-        fields = ["id","item","quantity","customer"]
+        fields = ["id","item","quantity","customer","status"]
         extra_kwrags = {"customer":{"read_only": True}}
-
-    def create(self, validated_data):
-        print(validated_data)
-        sales_order= SalesOrder.objects.create_user(**validated_data)
-        return  sales_order
