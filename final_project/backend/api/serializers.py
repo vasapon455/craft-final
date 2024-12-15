@@ -48,5 +48,5 @@ class SalesOrderSerializer(serializers.ModelSerializer):
     customer = serializers.StringRelatedField()
     class Meta: 
         model = SalesOrder
-        fields = ["id","item","quantity","customer","status"]
+        fields = ["id","item","quantity","customer","status","date_created"]
         extra_kwrags = {"customer":{"read_only": True}}

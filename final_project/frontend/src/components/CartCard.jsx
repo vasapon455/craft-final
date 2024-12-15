@@ -14,6 +14,7 @@ const CartCard = ({ id, price, setPrice, name, quantity, buy, setBuy }) => {
   const [cartQuantity, setCartQuantity] = useState(quantity);
 
   const itemPrice = cartProduct[0].price;
+  const navigate = useNavigate();
 
   const th_price = itemPrice.toLocaleString("th-TH", {
     style: "currency",
@@ -31,11 +32,6 @@ console.log(name)
   const handleDelete = (id) => {
     api
       .delete(`/api/cart-items/${id}`)
-      .then((res) => {
-        if (res.status === 204) {
-          alert("เอาออกจากตระกร้าแล้ว!");
-        } else alert("ไม่สามารถเอาออกจากตระกร้าได้");
-      })
       .catch((error) => alert(error));
   };
 
@@ -87,9 +83,9 @@ console.log(name)
       .post("/api/order/", formData)
       .then((res) => {
         if (res.status === 201) {
-          alert("สั่งซื้อสำเร็จ");
           handleDelete(id)
           setPrice(0)
+          navigate("/check-out")
         } else {
           alert("ไม่สามารถสั่งซื้อได้");
         }

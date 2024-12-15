@@ -68,6 +68,7 @@ class SalesOrder(models.Model):
     quantity = models.IntegerField()
     customer =  models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="customer_order")
     status = models.CharField(max_length=50, default="กำลังเตรียมสินค้า")
+    date_created = models.DateTimeField(auto_now_add=True)   
 
     def __str__(self):
         return self.item.__str__()

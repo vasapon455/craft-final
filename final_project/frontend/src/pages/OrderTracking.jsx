@@ -6,6 +6,7 @@ import { useSalesOrder } from "../contexts/SalesOrderProvider";
 
 const OrderTracking = () => {
   const [salesOrderData, setSalesOrderData] = useSalesOrder();
+  
 
 
   return (
@@ -18,6 +19,7 @@ const OrderTracking = () => {
               name={data.item}
               quantity={data.quantity}
               status={data.status}
+              date={data.date_created}
             />
           ))}
         </section>
